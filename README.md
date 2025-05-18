@@ -45,6 +45,10 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
 - [IAM Identity Center](#iam-identity-center)
 - [AWS Organizations](#aws-organizations)
+- [CloudShell](#cloudshell)
+- [CLI](#cli)
+
+---
 
 ### Cloud computing
 
@@ -98,6 +102,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Colaboração facilitada
     - Equipes podem trabalhar juntas em tempo real em documentos, sistemas e projetos, mesmo à distância.
 
+---
 
 ### AWS Identity and Access Management (IAM) 
 
@@ -119,6 +124,9 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
   - Auditoria e Monitoramento
     > Registra as atividades de usuários para garantir que não haja acessos não autorizados.
+
+  - Política de senha (personalizada)
+    > Conjunto de regras definidas para criação, uso e manutenção de senhas. Ex: Não permitir repetição de senhas.
 
 #### Para que ele serve
 
@@ -145,6 +153,8 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Conformidade
     > Ajuda a atender a requisitos legais e regulatórios, como a GDPR, ao manter um registro das ações dos usuários.
 
+---
+
 ### IAM Identity Center
 
 É um serviço da AWS que ajuda a gerenciar identidades e acessos de usuários de forma centralizada para múltiplas contas e aplicações dentro da AWS. Só é habilitado quando utilizamos o AWS Organizations.
@@ -167,6 +177,8 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Integração com provedores externos de identidade (IdPs).
   - Relatórios e auditoria integrados.
   - Mais segurança e controle sobre acessos.
+
+---
 
 ### AWS Organizations
 
@@ -193,6 +205,35 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Faturamento simplificado
   - Isolamento entre ambientes
   - Facilidade para escalar e criar novas contas
+
+---
+
+### CloudShell 
+
+É um terminal online fornecido pelo provedor de nuvem, que já vem configurado com as ferramentas necessárias para você usar e gerenciar seus serviços em nuvem diretamente do navegador.
+
+#### Vantagens
+
+  - Ambiente pré-configurado com ferramentas como o CLI da nuvem, Python, Git etc.
+  - Sem precisar instalar nada no seu computador.
+  - Armazena arquivos temporários ou persistentes (dependendo do provedor).
+  - Ideal para execuções rápidas de comandos e testes.
+
+---
+
+### CLI (Command Line Interface) 
+
+É a ferramenta de linha de comando que você instala no seu computador para interagir com um serviço AWS.
+
+#### Vantagens
+
+  - Permite executar comandos diretamente no seu terminal local.
+  - Você precisa instalar e configurar (ex: com credenciais).
+  - Útil para automatizar tarefas via scripts.
+  - Exige autenticação e configuração local (ex: aws configure).
+
+---
+
 
 ---
 
