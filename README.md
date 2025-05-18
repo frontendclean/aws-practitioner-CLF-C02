@@ -44,7 +44,7 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Cloud computing](#cloud-computing)
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
 - [IAM Identity Center](#iam-identity-center)
-- [AWS Organizations](#️aws-organizations)
+- [AWS Organizations](#aws-organizations)
 
 ### Cloud computing
 
