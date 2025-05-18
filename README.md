@@ -4,7 +4,7 @@
 
 Este repositório foi criado para ajudar quem está se preparando para a certificação **AWS Certified Cloud Practitioner**. O foco é compartilhar **recursos gratuitos**, **explicações simples** e **dicas práticas** para quem está começando na nuvem AWS.
 
-## 🎯 O que é a certificação Cloud Practitioner?
+## O que é a certificação Cloud Practitioner?
 
 A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. Ela é ideal para iniciantes e valida conhecimentos básicos sobre:
 - Conceitos de nuvem
@@ -14,7 +14,7 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 
 ---
 
-## 📚 Recursos de Estudo
+## Recursos de Estudo
 
 ### 1. **Guia do exame** 
 - [AWS Guia do exame (português)](https://d1.awsstatic.com/pt_BR/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf)
@@ -37,7 +37,7 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 
 ---
 
-## 🧠 O que estudar (resumo dos tópicos)
+## O que estudar (resumo dos tópicos)
 
 ### Menu 
 
@@ -46,7 +46,7 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [IAM Identity Center](#iam-identity-center)
 - [AWS Organizations](#️aws-organizations)
 
-### ☁️ Cloud computing
+### Cloud computing
 
 Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recursos de computação — como servidores, armazenamento, bancos de dados, redes, software e mais — pela internet ("a nuvem"), em vez de depender de computadores locais ou servidores físicos.
 
@@ -99,7 +99,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
     - Equipes podem trabalhar juntas em tempo real em documentos, sistemas e projetos, mesmo à distância.
 
 
-### ☁️ AWS Identity and Access Management (IAM) 
+### AWS Identity and Access Management (IAM) 
 
 É um sistema que controla e gerencia quem pode acessar o quê em um ambiente de TI, como uma rede, aplicativo ou sistema.
 
@@ -145,7 +145,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Conformidade
     > Ajuda a atender a requisitos legais e regulatórios, como a GDPR, ao manter um registro das ações dos usuários.
 
-### ☁️ IAM Identity Center
+### IAM Identity Center
 
 É um serviço da AWS que ajuda a gerenciar identidades e acessos de usuários de forma centralizada para múltiplas contas e aplicações dentro da AWS. Só é habilitado quando utilizamos o AWS Organizations.
 
@@ -168,7 +168,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
   - Relatórios e auditoria integrados.
   - Mais segurança e controle sobre acessos.
 
-### ☁️ AWS Organizations
+### AWS Organizations
 
 É um serviço da Amazon Web Services que permite gerenciar várias contas da AWS de forma centralizada, como se fossem parte de uma "empresa" ou "organização" única.
 
@@ -196,7 +196,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
-## 💡 Dicas Finais
+## Dicas Finais
 
 - Revise os conceitos, não decore.
 - Faça simulados com foco em entender o **porquê da resposta**.
@@ -205,16 +205,16 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
-## ✍️ Contribua
+## Contribua
 
 Achou um recurso legal? Melhoraria algum trecho? Sinta-se à vontade para abrir um PR ou criar uma issue!
 
 ---
 
-## 📩 Contato
+## Contato
 
 Caso tenha dúvidas ou queira trocar ideias, me chama no [Instagram](https://www.instagram.com/frontend_clean/).
 
 ---
 
-🧠 **Bons estudos e boa sorte na prova!**
+**Bons estudos e boa sorte na prova!**
