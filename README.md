@@ -1095,7 +1095,7 @@ A Snow Family ajuda a mover grandes volumes de dados de forma segura, eficiente 
 #### Membros da família Snow
 
 | Serviço | Capacidade | Uso principal | Observações |
-|:------:|:------:|:------:|:------:|:------:|:------:|
+|:------:|:------:|:------:|:------:|
 | AWS Snowcone | Até 8 TB | Pequenos volumes ou ambientes remotos | Leve, portátil e resistente (cabe numa mochila) |
 | AWS Snowball | Até 80 TB (por unidade) | Migração em massa, backup, arquivamento | Suporta clusters e criptografia |
 | AWS Snowmobile | Até 100 PB | Transferência em escala exabyte (extrema) | Caminhão com container de dados! |
