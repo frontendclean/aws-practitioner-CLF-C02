@@ -599,9 +599,7 @@ EC2 é como alugar um computador na nuvem, com o sistema operacional e configura
   - Otimizadas para armazenamento
   - Otimizadas para HPC
 
-<a href="https://aws.amazon.com/pt/ec2/instance-types/" target="_blank" rel="noopener noreferrer">
-  documentação completa da aws
-</a>
+[documentação completa da aws](https://aws.amazon.com/pt/ec2/instance-types/).
 
 #### Valores EC2 (Modelos de aquisição)
 
