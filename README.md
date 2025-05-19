@@ -44,9 +44,16 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Cloud computing](#cloud-computing)
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
 - [IAM Identity Center](#iam-identity-center)
+- [IAM Credential Report](#iam-credential-report)
+- [Access Advisor](#access-advisor)
 - [AWS Organizations](#aws-organizations)
 - [CloudShell](#cloudshell)
-- [CLI](#cli)
+- [CLI](#cli-command-line-interface)
+- [AWS Access](#aws-access)
+- [AWS SDK (Software Development Kit)](#aws-sdk-software-development-kit)
+- [AWS Wavelength](#aws-wavelength)
+- [AWS Outposts](#aws-outposts)
+- [Shared Responsibility Model](#shared-responsibility-model)
 
 ---
 
@@ -180,6 +187,30 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
+### IAM Credential Report
+
+É um relatório gerado pela AWS que mostra o status de segurança das credenciais de todos os usuários IAM da sua conta.
+
+#### Vantagens
+
+  - Auditoria de segurança: ver quem está usando credenciais inseguras ou antigas.
+  - Conformidade: ajuda a seguir boas práticas de segurança ou requisitos legais.
+  - Revisão de acessos: identificar usuários inativos ou com permissões desnecessárias.
+
+---
+
+### Access Advisor
+
+É uma funcionalidade do IAM (Identity and Access Management) da AWS que mostra quais serviços da AWS um usuário, grupo ou função usou recentemente – e quando foi o último uso.
+
+#### Vantagens
+
+  - Identificar permissões desnecessárias
+  - Reduzir o risco de acesso excessivo (princípio do menor privilégio)
+  - Limpar ou ajustar políticas de IAM
+
+---
+
 ### AWS Organizations
 
 É um serviço da Amazon Web Services que permite gerenciar várias contas da AWS de forma centralizada, como se fossem parte de uma "empresa" ou "organização" única.
@@ -221,7 +252,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
-### CLI (Command Line Interface) 
+### CLI (Command Line Interface)
 
 É a ferramenta de linha de comando que você instala no seu computador para interagir com um serviço AWS.
 
@@ -234,6 +265,105 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
+### AWS Access
+
+Refere-se às credenciais e permissões que permitem que alguém (ou algum sistema) acesse recursos da AWS.
+
+#### Vantagens
+
+  - Chave de acesso (Access Key ID + Secret Access Key)
+    > Usada por sistemas, scripts ou SDKs para autenticar chamadas à AWS.
+  - Usuários do IAM (Identity and Access Management)
+    > Pessoas ou serviços com permissões definidas (por exemplo, “pode acessar apenas o S3”).
+  - Políticas de permissão (IAM Policies)
+    > Regras que definem o que um usuário ou sistema pode ou não fazer (ex: só pode ler arquivos do S3, não deletar).
+  - MFA (Autenticação multifator)
+    > Para maior segurança nos acessos via console.
+
+---
+
+### AWS SDK (Software Development Kit)
+
+É um conjunto de bibliotecas que você usa em linguagens de programação (como JavaScript, Python, Java, etc.) para interagir com os serviços da AWS diretamente no seu código.
+
+#### Vantagens
+
+  - Criar uma instância EC2 com código
+  - Fazer upload de arquivos para o S3
+  - Ler mensagens do SQS
+  - Integrar com Lambda, DynamoDB e outros serviços programaticamente
+
+---
+
+### AWS Wavelength
+
+É um serviço da Amazon que leva os recursos da AWS para mais perto dos usuários finais, diretamente nas redes 5G de operadoras de telecomunicação.
+
+#### Por que isso importa
+
+Alguns aplicativos precisam de respostas muito rápidas. O Wavelength ajuda nisso ao colocar servidores AWS dentro das redes 5G, perto dos dispositivos dos usuários.
+
+  - Jogos online em tempo real
+  - Carros autônomos
+  - Realidade aumentada (AR) e virtual (VR)
+  - Monitoramento industrial com sensores
+
+#### Como funciona
+
+  - Você usa instâncias EC2, EBS, VPC etc. como em qualquer região AWS.
+  - Mas os recursos rodam em zonas Wavelength, que estão fisicamente dentro das instalações das operadoras 5G.
+  - A conexão é super rápida porque não precisa ir até uma região AWS "central" (como São Paulo ou Virgínia).
+
+#### Vantagens
+
+  - Baixa latência (ideal para aplicações críticas)
+  - Integração total com AWS padrão
+  - Uso otimizado de 5G
+  - Mais performance para edge computing
+
+---
+
+### AWS Outposts
+
+É um serviço da Amazon que leva a infraestrutura da AWS para dentro do seu data center ou ambiente local — ou seja, é a AWS rodando fisicamente na sua empresa.
+
+#### Para que serve
+
+  - Baixa latência: quando os sistemas precisam responder em milissegundos (por exemplo, produção industrial ou hospitais).
+  - Requisitos legais ou de compliance: quando a empresa não pode armazenar dados fora do país ou precisa de controle físico total.
+  - Ambientes sem conexão confiável com a nuvem pública.
+
+#### Vantagens
+
+  - Latência ultra baixa
+  - Controle físico
+  - Mesmas APIs AWS
+  - Híbrido verdadeiro
+
+---
+
+### Shared Responsibility Model
+
+O Shared Responsibility Model (Modelo de Responsabilidade Compartilhada) da AWS define quem é responsável pelo quê em relação à segurança e conformidade na nuvem: a AWS cuida de parte da segurança, e você (cliente) cuida da outra parte.
+
+#### Para que serve
+
+  - Evita falhas de segurança
+  - Ajuda a entender quem cuida do quê
+  - Esclarece responsabilidades para auditorias e compliance
+
+#### Divisão de responsabilidades
+
+|       Categoria       | Responsabilidade da AWS | Sua responsabilidade (cliente) |
+|-----------------------|:------:|:------:|
+| Infraestrutura física | Sim | Não |
+| Hardware | Sim | Não |
+| Serviços gerenciados | Sim | Sim |
+| Sistema operacional | Não | Sim |
+| Gerenciamento de identidade IAM | Não | Sim |
+| Criptografia de dados | AWS fornece ferramentas | Você decide se/como usar |
+| Configuração da rede | Não | Sim |
+| Aplicações e dados | Não | Sim |
 
 ---
 
