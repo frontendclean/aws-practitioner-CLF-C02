@@ -75,6 +75,13 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Amazon FSx (File System X)](#amazon-fsx-file-system-x)
 - [AWS Auto Scaling](#aws-auto-scaling)
 - [ELB (Elastic Load Balancing)](#elb-elastic-load-balancing)
+- [Amazon S3 (Simple Storage Service)](#amazon-s3-simple-storage-service)
+- [Bucket S3](#bucket-s3)
+- [Classes de armazenamento do Amazon S3](#classes-de-armazenamento-do-amazon-s3)
+- [Versionamento no Amazon S3](#versionamento-no-amazon-s3)
+- [Criptografia no Amazon S3](#criptografia-no-amazon-s3)
+- [AWS Storage Gateway](#aws-storage-gateway)
+- [AWS Snow Family](#aws-snow-family)
 
 ---
 
@@ -868,7 +875,248 @@ O ELB funciona como um "porteiro inteligente" que recebe as requisições dos us
 
 ---
 
+### Amazon S3 (Simple Storage Service)
 
+É um serviço da AWS que permite armazenar e recuperar qualquer quantidade de dados, de forma escalável, segura e altamente disponível, usando a web.
+
+O S3 é como um disco virtual na nuvem, ideal para guardar arquivos como imagens, vídeos, documentos, backups, logs, e muito mais.
+
+#### Para que serve
+
+  - Os dados são armazenados em "buckets" (como pastas principais)
+  - Cada objeto (arquivo) tem uma chave única e pode ter metadados
+  - Você acessa os arquivos via URL, API, SDK ou AWS CLI
+
+#### Vantagens
+
+  - Escalabilidade
+    > Armazena de poucos KB a petabytes, sem limite de crescimento
+  - Pagamento por uso
+    > Você paga só pelo que usar (armazenamento, requisições, tráfego)
+  - Segurança integrada
+    > Suporte a criptografia, controle de acesso com IAM e políticas
+  - Alta durabilidade
+    > 99.999999999% (11 noves) de durabilidade dos objetos
+  - Integração ampla
+    > Funciona com outros serviços da AWS (EC2, Lambda, CloudFront etc.)
+
+#### Casos de uso comuns
+
+  - Armazenar imagens e vídeos de um site
+  - Fazer backups automáticos de servidores ou bancos de dados
+  - Guardar logs e dados analíticos
+  - Hospedar um site estático
+  - Distribuir arquivos com alta performance (via CloudFront)
+
+---
+
+### Bucket S3
+
+É como uma pasta raiz onde você armazena objetos (arquivos e dados) na nuvem.
+
+Um bucket é o "conteiner" principal do S3, onde você organiza e gerencia os seus arquivos. Todo objeto dentro do S3 precisa estar em um bucket.
+
+#### Características de um bucket
+
+  - Nome único global
+    > O nome do bucket deve ser único no mundo inteiro da AWS
+  - Contém objetos
+    > Armazena arquivos como imagens, vídeos, PDFs, backups, etc.
+  - Organização
+    > Você pode organizar objetos com prefixos (como pastas simuladas)
+  - URL de acesso
+    > Cada objeto pode ter um link como: https://bucket-nome.s3.amazonaws.com/arquivo.jpg
+  - Segurança
+    > Suporte a políticas de acesso, criptografia, logs e versionamento
+  - Região
+    > Cada bucket pertence a uma região específica da AWS
+
+#### O que dá pra configurar em um bucket
+
+  - Controle de acesso (ACLs, políticas, IAM)
+  - Versionamento de arquivos
+  - Logs de acesso
+  - Ciclo de vida dos objetos (por ex: excluir após 30 dias)
+  - Criptografia automática
+  - Replicação entre regiões
+
+---
+
+### Classes de armazenamento do Amazon S3
+
+As classes de armazenamento do Amazon S3 são diferentes níveis de custo, performance e durabilidade, criados para otimizar o uso e reduzir custos conforme o tipo de dado e a frequência de acesso.
+
+#### Principais classes do S3
+
+| Classe | Quando usar | Frequência de acesso | Características principais |
+|:------:|:------:|:------:|:------:|
+| S3 Standard | Para dados acessados com frequência | Alta | Alta durabilidade, baixa latência, sem requisitos mínimos |
+| S3 Intelligent-Tiering | Quando o padrão de acesso varia e você quer otimizar custos | Variável | Move automaticamente dados entre níveis (frequente/raro) |
+| S3 Standard-IA | Para dados raramente acessados, mas que precisam estar disponíveis rapidamente | Baixa | Mais barato que o Standard, com cobrança por recuperação |
+| S3 One Zone-IA | Como o IA, mas armazenado em uma única zona de disponibilidade | Baixa | Custo menor, menos tolerância a falhas |
+| S3 Glacier Instant Retrieval | Arquivos raros, mas que você precisa acessar rapidamente | Muito baixa | Acesso quase instantâneo, mas bem mais barato |
+| S3 Glacier Flexible Retrieval | Arquivos de arquivamento, com acesso em minutos ou horas | Muito baixa | Mais barato ainda, recuperação em 1 minuto a 12 horas |
+| S3 Glacier Deep Archive | Arquivos quase nunca acessados (como backups antigos) | Quase nenhuma | Custo mais baixo possível, acesso em 12–48 horas |
+
+#### Vantagens de escolher a classe certa
+
+  - Economia significativa
+  - Otimização de performance
+  - Gerenciamento automático com Intelligent-Tiering
+
+---
+
+### Versionamento no Amazon S3
+
+É um recurso que permite manter várias versões de um mesmo objeto (arquivo) dentro de um bucket. Ele ajuda a proteger dados contra exclusões acidentais e alterações indesejadas.
+
+Com o versionamento ativado, toda vez que você substituir ou excluir um arquivo, o S3 guarda a versão anterior, e você pode recuperá-la depois.
+
+#### Para que serve
+
+  - Cada vez que você faz upload de um objeto com o mesmo nome, o S3 cria uma nova versão, e a anterior continua guardada.
+  - Quando você "deleta" um arquivo, o S3 marca com um "delete marker", mas não apaga a versão antiga (a menos que você apague explicitamente).
+
+#### Vantagens
+
+  - Proteção contra perdas
+    > Você pode recuperar arquivos excluídos ou sobrescritos
+  - Histórico de alterações
+    > Guarda todas as versões de um mesmo objeto
+  - Gerenciamento flexível
+    > Pode configurar políticas para expirar versões antigas
+
+#### Pontos de atenção
+
+  - Custo: versões antigas ocupam espaço e geram cobrança
+  - Recomendado configurar regras de ciclo de vida para apagar versões antigas automaticamente
+  - Funciona apenas em buckets com versionamento ativado (não vem por padrão)
+
+---
+
+### Criptografia no Amazon S3
+
+A criptografia no Amazon S3 protege seus dados em repouso (armazenados no bucket) usando algoritmos de criptografia seguros, para garantir que somente pessoas autorizadas consigam acessá-los, mesmo que alguém tenha acesso físico ao armazenamento.
+
+Com a criptografia habilitada no S3, seus arquivos são automaticamente codificados ao serem salvos e decodificados apenas no momento da leitura, com controle total sobre as chaves.
+
+#### Tipos de criptografia em repouso no S3
+
+| Tipo | Nome | Gerenciamento de chaves |
+|:------:|:------:|:------:|
+| SSE-S3 | Server-Side Encryption com chaves da AWS | A AWS gerencia tudo para você |
+| SSE-KMS | Server-Side Encryption com AWS KMS | Você usa o AWS Key Management Service para controlar as chaves |
+| SSE-C | Server-Side Encryption com chave do cliente | Você fornece a chave em cada requisição |
+| Criptografia do lado do cliente | Client-Side Encryption | Você criptografa os dados antes de enviá-los ao S3 |
+
+#### Vantagens
+
+  - Segurança forte com algoritmos como AES-256
+  - Conformidade com normas (LGPD, ISO, HIPAA, etc.)
+  - Visibilidade com logs no CloudTrail (especialmente com SSE-KMS)
+  - Pode ser aplicada automaticamente em buckets inteiros
+
+---
+
+### AWS Storage Gateway
+
+É um serviço que conecta seu ambiente local (on-premises) à nuvem da AWS, permitindo que você use o armazenamento da AWS como se fosse um disco local. Ele serve como uma ponte entre data centers e o armazenamento em nuvem.
+
+O Storage Gateway integra seus servidores ou aplicações locais ao Amazon S3, Glacier ou EBS, permitindo backup, arquivamento ou extensão de armazenamento sem sair do ambiente local.
+
+#### Vantagens
+
+  - Usa a AWS como extensão de armazenamento local
+  - Reduz custos com infraestrutura física
+  - Integra-se com sistemas existentes (sem mudar aplicações)
+  - Backup e arquivamento automáticos na nuvem
+  - Suporte a criptografia e logs de auditoria
+
+#### Modos de operação (tipos de gateway)
+
+| Tipo de Gateway | Para que serve | Armazenamento final na AWS |
+|:------:|:------:|:------:|
+| File Gateway | Compartilhamento de arquivos via NFS/SMB | Armazena arquivos no S3 |
+| Volume Gateway | Monta discos locais em servidores, mas replica na nuvem | Snapshots armazenados no EBS/S3 |
+| Tape Gateway | Substitui fitas físicas por fitas virtuais (VTL) | Arquiva no S3 Glacier |
+
+#### File Gateway
+
+Permite que você armazene e acesse arquivos na nuvem usando protocolos padrão (NFS ou SMB), como se fossem arquivos locais.
+
+  - Interface: Arquivos
+  - Protocolos: NFS (Linux) e SMB (Windows)
+  - Armazena os arquivos no Amazon S3
+  - Usado para:
+    - Compartilhar arquivos entre equipes
+    - Backup de arquivos
+    - Análise de dados com acesso direto do S3
+
+#### Volume Gateway
+
+Apresenta discos (volumes) locais para seus servidores, mas armazena os dados de forma segura e redundante na nuvem.
+
+| Modo | Funciona assim | Uso típico |
+|:------:|:------:|:------:|
+| Cached volumes | Os dados recentes ficam em cache local, e o restante na AWS | Reduz espaço físico, melhora acesso |
+| Stored volumes | Todos os dados ficam localmente, e são espelhados na AWS | Continuidade de negócios e backup |
+
+  - Armazena snapshots no Amazon S3 / EBS
+  - Usado para:
+    - Backup de bancos de dados
+    - Recuperação de desastres
+
+#### Tape Gateway
+
+Emula uma biblioteca de fitas magnéticas (VTL) compatível com seu software de backup, mas usa a nuvem.
+
+  - Substitui fitas físicas por fitas virtuais
+  - Armazena em Amazon S3 e arquiva em Amazon S3 Glacier ou Deep Archive
+  - Usado para:
+    - Eliminar manutenção de hardware de fita
+    - Arquivamento de longo prazo
+
+#### Comparação rápida
+
+| Tipo | Interface | Usa S3? | Usa EBS? | Usa Glacier? | Protocolo local |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+| File Gateway | Arquivos | sim | não | não | NFS / SMB |
+| Volume Gateway | Blocos | sim | sim | não (via snapshot) | iSCSI |
+| Tape Gateway | Fita VTL | sim | não | sim | VTL (via software de backup) |
+
+---
+
+### AWS Snow Family
+
+É um conjunto de dispositivos físicos fornecidos pela Amazon para transferência de dados em larga escala entre seu ambiente local (on-premises) e a nuvem da AWS — especialmente útil quando a rede é lenta, cara ou inexistente.
+
+A Snow Family ajuda a mover grandes volumes de dados de forma segura, eficiente e até em áreas remotas, usando dispositivos físicos robustos enviados pela própria AWS.
+
+#### Membros da família Snow
+
+| Serviço | Capacidade | Uso principal | Observações |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+| AWS Snowcone | Até 8 TB | Pequenos volumes ou ambientes remotos | Leve, portátil e resistente (cabe numa mochila) |
+| AWS Snowball | Até 80 TB (por unidade) | Migração em massa, backup, arquivamento | Suporta clusters e criptografia |
+| AWS Snowmobile | Até 100 PB | Transferência em escala exabyte (extrema) | Caminhão com container de dados! |
+
+#### Como funciona
+
+  - Você solicita o dispositivo pela AWS
+  - Ele é enviado fisicamente até seu local
+  - Você transfere os dados para o dispositivo
+  - Ele é devolvido para a AWS, que importa os dados no seu bucket S3 ou serviço especificado
+
+#### Vantagens
+
+  - Migração de data center para a nuvem
+  - Coleta de dados em áreas sem internet (militares, mineração, navios)
+  - Transferência segura e criptografada de dados sensíveis
+  - Processamento local com Snowcone ou Snowball Edge com EC2 e Lambda embutidos
+  - Dispositivo é bloqueado e se autodestrói logicamente após uso incorreto
+  - Suporte a chaves gerenciadas pelo AWS KMS
+
+---
 
 ## Dicas Finais
 
