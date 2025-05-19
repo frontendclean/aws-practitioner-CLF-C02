@@ -42,6 +42,10 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 ### Menu 
 
 - [Cloud computing](#cloud-computing)
+- [Nuvem pública](#nuvem-pública)
+- [Nuvem privada](#nuvem-privada)
+- [AWS Account](#aws-account)
+- [AWS Free Tier](#aws-free-tier)
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
 - [IAM Identity Center](#iam-identity-center)
 - [IAM Credential Report](#iam-credential-report)
@@ -54,6 +58,8 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS Wavelength](#aws-wavelength)
 - [AWS Outposts](#aws-outposts)
 - [Shared Responsibility Model](#shared-responsibility-model)
+- [CloudWatch](#cloudwatch)
+- [EC2 (Elastic Compute Cloud)](#ec2-elastic-compute-cloud)
 
 ---
 
@@ -108,6 +114,68 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
   - Colaboração facilitada
     - Equipes podem trabalhar juntas em tempo real em documentos, sistemas e projetos, mesmo à distância.
+
+---
+
+### Nuvem pública
+
+É um modelo de computação em a AWS oferece infraestrutura, plataformas e serviços pela internet, compartilhados entre vários clientes. Você aluga recursos (servidores, storage, banco, IA, etc.) em vez de comprá‑los / mantê‑los.
+
+#### Vantagens
+
+  - Agilidade
+  - Alcance global
+  - Serviços gerenciado
+
+---
+
+### Nuvem privada
+
+É um ambiente de computação em nuvem dedicado a uma única organização. Em vez de compartilhar a infraestrutura com outros clientes (como na nuvem pública), todo o hardware, rede e serviços ficam isolados — fisicamente ou logicamente — para uso exclusivo daquela empresa ou entidade.
+
+#### Para que ele serve
+
+  - Isolamento completo – recursos não são compartilhados com terceiros.
+  - Maior controle – você decide topologia de rede, políticas de segurança, compliance, local físico dos dados.
+  - Customização profunda – pode adaptar hardware, hypervisors e processos às necessidades do negócio.
+  - Responsabilidade total – a maior parte da manutenção e segurança recai sobre sua equipe (ou sobre o provedor se for hospedada).
+
+#### Vantagens
+
+  - Atende requisitos rígidos de compliance (por ex., dados sensíveis de governo/saúde).
+  - Previsibilidade de desempenho e ausência de "vizinhos barulhentos".
+  - Integração fácil com sistemas legados no mesmo site.
+
+---
+
+### AWS Account
+
+É simplesmente a sua conta de usuário dentro da Amazon Web Service
+
+#### Vantagens
+
+  - Acessa e paga pelos serviços da AWS (EC2, S3, Lambda, etc.).
+  - Isola recursos e cobrança
+    > Tudo que você cria (máquinas virtuais, bancos, buckets) fica vinculado àquela conta e aparece na fatura correspondente. 
+  - Gerencia permissões
+    > Via IAM, você cria usuários/chaves e define quem pode fazer o quê.
+  - Separa ambientes
+    > muitas empresas mantêm contas distintas para produção, staging, testes, ou até por cliente/projeto, para manter segurança e controle de custos.
+
+---
+
+### AWS Free Tier
+
+É so conjunto de ofertas “gratuitas” que a Amazon Web Services disponibiliza para quem criar (ou já tem) uma conta. Ele serve para testar e aprender sem pagar — desde que você fique dentro de certos limites
+
+#### Existem três tipos de oferta
+
+  - Gratuito por 12 meses
+    > Começa na data em que você abre a conta e dura um ano.
+  - Gratuito sempre (sempre que usar)
+    > Recursos que permanecem grátis enquanto você se mantiver nos limites, mesmo depois de 12 meses.
+  - Test‑drive pontual (trials)
+    > Ofertas de curta duração (30, 60 ou 90 dias) que começam quando você ativa o serviço.
 
 ---
 
@@ -365,6 +433,81 @@ O Shared Responsibility Model (Modelo de Responsabilidade Compartilhada) da AWS 
 | Configuração da rede | Não | Sim |
 | Aplicações e dados | Não | Sim |
 
+---
+
+### CloudWatch
+
+É o serviço de monitoramento e observabilidade da AWS
+
+#### Para que serve
+
+  - Coleta métricas em tempo real de praticamente todos os serviços AWS (CPU, memória, requisições, latência, etc.) e de aplicações próprias via API/Agent.
+  - Armazena logs (CloudWatch Logs) e permite filtrar, buscar e criar insights em tempo quase real.
+  - Gera alarmes: define limites (thresholds) ou expressões; quando violados, dispara SNS, Auto Scaling, Lambda, e‑mail, etc.
+  - Cria dashboards interativos para visualizar métricas e logs num só painel.
+  - Rastreia eventos (CloudWatch Events/EventBridge) para reagir a alterações na infraestrutura ― por ex., iniciar um workflow quando uma instância muda de estado.
+
+#### Vantagens
+
+  - Detectar problemas cedo (picos de CPU, erros 5xx).
+  - Automatizar respostas (scale‑out quando fila crescer).
+  - Acompanhar custo e performance em múltiplas contas/regiões.
+  - Centralizar logs sem precisar gerir servidores de ELK ou Grafana.
+
+---
+
+### EC2 (Elastic Compute Cloud) 
+
+É um serviço da AWS que permite criar e usar servidores virtuais na nuvem, chamados de instâncias EC2.
+
+EC2 é como alugar um computador na nuvem, com o sistema operacional e configurações que você quiser, e só pagar pelo tempo de uso.
+
+#### Para que serve
+
+  - Hospedar aplicações web (como sites, APIs, backends)
+  - Executar scripts, bots, jobs e tarefas de processamento
+  - Rodar bancos de dados, sistemas legados, VPNs, etc.
+  - Simular ambientes de produção/teste com rapidez
+
+#### O que você escolhe ao criar uma instância EC2
+
+  - Tipo de máquina (CPU, memória, rede) → ex: t2.micro, m5.large
+  - Sistema operacional → Linux, Windows, etc.
+  - Armazenamento (EBS)
+  - Segurança (grupo de segurança, VPC, chaves SSH)
+  - Região e zona de disponibilidade
+
+#### Vantagens
+
+  - Flexibilidade
+    > Escolha SO, tamanho, configurações
+  - Pague pelo uso
+    > Por hora, segundo, ou uso reservado/spot
+  - Escalável
+    > Pode aumentar/diminuir conforme a demanda
+  - Seguro
+    > Com IAM, grupos de segurança, criptografia
+  - Alta disponibilidade
+    > Pode rodar em várias regiões e zonas
+
+#### Tipos de instância EC2
+
+  - Otimizadas para computação
+  - Otimizadas para memória
+  - Computação acelerada
+  - Otimizadas para armazenamento
+  - Otimizadas para HPC
+
+[documentação completa da aws](https://aws.amazon.com/pt/ec2/instance-types/).
+
+#### Valores EC2 (Modelos de aquisição)
+
+| Modelo de aquisição | Como funciona | Quando faz sentido |
+|-----------------------|:------:|:------:|
+| Sob demanda (On‑Demand) | Paga por hora ou segundo enquanto a instância está ligada. Sem compromisso de longo prazo. | Workloads variáveis, testes, picos imprevisíveis, primeiro deploy antes de medir uso. |
+| Instâncias Reservadas (Reserved Instances – RI) | Você firma um compromisso de 1 ou 3 anos para usar um tipo de instância numa região ou zona. Garante desconto de até ~72 % sobre sob demanda | Workloads estáveis 24×7 (bancos, back‑ends de produção). Planejamento de custos previsível. |
+| Savings Plans | Compromisso de gasto hora médio (ex.: US$ 10/h) por 1 ou 3 anos. Aplica desconto automático a EC2, Fargate e Lambda, sem travar num tipo ou região específica (Compute SP). Há também o EC2 Instance SP (ligado à família/região, desconto maior). | mbientes elásticos que rodam continuamente, mas querem liberdade para mudar tipos ou migrar para Fargate/Lambda. |
+| Spot Instances | Você usa capacidade ociosa do data center com desconto de 70–90 %, mas a AWS pode encerrar a instância com 2 min de aviso se precisar da capacidade. | Tarefas tolerantes a interrupção: big data, renderização, CI/CD distribuído, containers stateless, machine learning batch. Pode ser combinado com Auto Scaling. |
 ---
 
 ## Dicas Finais
