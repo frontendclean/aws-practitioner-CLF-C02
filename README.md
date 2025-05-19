@@ -44,8 +44,12 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Cloud computing](#cloud-computing)
 - [Nuvem pública](#nuvem-pública)
 - [Nuvem privada](#nuvem-privada)
+- [Escalabilidade](#escalabilidade)
+- [Elasticidade](#elasticidade)
+- [Disponibilidade](#disponibilidade)
 - [AWS Account](#aws-account)
-- [AWS Free Tier](#aws-free-tier)
+- [AWS Free Tier](#awsfreetier)
+- [AWS Pricing Calculator](#aws-pricing-calculator)
 - [AWS Identity and Access Management (IAM)](#aws-identity-and-access-management-iam)
 - [IAM Identity Center](#iam-identity-center)
 - [IAM Credential Report](#iam-credential-report)
@@ -60,6 +64,17 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Shared Responsibility Model](#shared-responsibility-model)
 - [CloudWatch](#cloudwatch)
 - [EC2 (Elastic Compute Cloud)](#ec2-elastic-compute-cloud)
+- [EC2 Instance Connect](#ec2-instance-connect)
+- [Security Group](#security-group)
+- [AMI (Amazon Machine Image)](#ami-amazon-machine-image)
+- [Amazon EBS (Elastic Block Store)](#amazon-ebs-elastic-block-store)
+- [Snapshots](#snapshots)
+- [Snapshot X AMI](#snapshot-x-ami)
+- [Amazon EFS (Elastic File System)](#amazon-efs-elastic-file-system)
+- [Diferença entre EFS, EBS e S3](#diferença-entre-efs-ebs-e-s3)
+- [Amazon FSx (File System X)](#amazon-fsx-file-system-x)
+- [AWS Auto Scaling](#aws-auto-scaling)
+- [ELB (Elastic Load Balancing)](#elb-elastic-load-balancing)
 
 ---
 
@@ -148,6 +163,72 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ---
 
+### Escalabilidade 
+
+É a capacidade de um sistema crescer (ou encolher) de acordo com a demanda, mantendo desempenho, estabilidade e eficiência.
+
+Um sistema escalável aumenta ou reduz seus recursos (como servidores, armazenamento ou performance) conforme a necessidade, de forma automática ou planejada.
+
+#### Tipos de escalabilidade
+
+  - Horizontal
+    > Adiciona ou remove mais servidores (ex: mais EC2s, mais containers)
+  - Vertical
+    > Aumenta ou reduz os recursos de um servidor só (ex: mais CPU ou RAM)
+
+#### Vantagens
+
+  - Atende mais usuários sem travar
+  - Economiza recursos quando a demanda é baixa
+  - Mantém desempenho estável mesmo com picos de acesso
+  - Facilita manutenção e upgrades
+
+---
+
+### Elasticidade 
+
+É a capacidade automática de um sistema aumentar ou diminuir seus recursos de forma dinâmica, conforme a carga de trabalho muda — sem intervenção manual.
+
+Enquanto escalabilidade é a capacidade de crescer ou diminuir, a elasticidade é a ação automática e em tempo real de ajustar os recursos.
+
+#### Pra que serve
+
+  - Se o tráfego aumenta, o sistema adiciona recursos automaticamente
+  - Se o tráfego cai, ele remove os recursos desnecessários
+  - Isso acontece de forma rápida e automática, com base em regras ou métricas
+
+#### Vantagens
+
+  - Reduz custos automaticamente
+  - Responde rápido a mudanças de carga
+  - Ajusta recursos sem parar o sistema
+  - Menos intervenção humana
+
+---
+
+### Disponibilidade 
+
+É a capacidade de um sistema ou serviço permanecer acessível e funcional o maior tempo possível, mesmo diante de falhas ou picos de uso.
+
+Um sistema com alta disponibilidade está sempre "no ar", minimizando interrupções para os usuários.
+
+#### O que garante alta disponibilidade
+
+  - Redundância: múltiplos servidores, zonas de disponibilidade, regiões
+  - Balanceadores de carga: distribuem tráfego entre instâncias saudáveis
+  - Auto Scaling: substitui recursos com falha automaticamente
+  - Backups e failovers: permitem recuperação rápida
+  - Monitoramento ativo: detecta e responde a problemas rapidamente
+
+#### Vantagens
+
+  - Melhor experiência para o usuário (menos quedas)
+  - Mais confiabilidade para o negócio
+  - Redução do tempo de recuperação
+  - Continuidade de serviço mesmo com falhas
+
+---
+
 ### AWS Account
 
 É simplesmente a sua conta de usuário dentro da Amazon Web Service
@@ -166,7 +247,7 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
 
 ### AWS Free Tier
 
-É so conjunto de ofertas “gratuitas” que a Amazon Web Services disponibiliza para quem criar (ou já tem) uma conta. Ele serve para testar e aprender sem pagar — desde que você fique dentro de certos limites
+É so conjunto de ofertas "gratuitas" que a Amazon Web Services disponibiliza para quem criar (ou já tem) uma conta. Ele serve para testar e aprender sem pagar — desde que você fique dentro de certos limites
 
 #### Existem três tipos de oferta
 
@@ -176,6 +257,26 @@ Cloud computing (ou computação em nuvem) é um modelo de fornecimento de recur
     > Recursos que permanecem grátis enquanto você se mantiver nos limites, mesmo depois de 12 meses.
   - Test‑drive pontual (trials)
     > Ofertas de curta duração (30, 60 ou 90 dias) que começam quando você ativa o serviço.
+
+---
+
+### AWS Pricing Calculator
+
+É uma ferramenta gratuita da Amazon que permite estimar quanto vai custar usar os serviços da AWS antes de você contratá-los.
+
+#### Pra que serve
+
+  - Planejar custos de projetos na nuvem
+  - Comparar tipos de instâncias ou serviços
+  - Simular diferentes regiões (ex: São Paulo vs. Virgínia)
+  - Fazer propostas para clientes com base realista
+
+#### Vantagens
+
+  - Transparência
+  - Planejamento de orçamento
+  - Simulações flexíveis
+  - Gera relatórios
 
 ---
 
@@ -342,7 +443,7 @@ Refere-se às credenciais e permissões que permitem que alguém (ou algum siste
   - Chave de acesso (Access Key ID + Secret Access Key)
     > Usada por sistemas, scripts ou SDKs para autenticar chamadas à AWS.
   - Usuários do IAM (Identity and Access Management)
-    > Pessoas ou serviços com permissões definidas (por exemplo, “pode acessar apenas o S3”).
+    > Pessoas ou serviços com permissões definidas (por exemplo, "pode acessar apenas o S3").
   - Políticas de permissão (IAM Policies)
     > Regras que definem o que um usuário ou sistema pode ou não fazer (ex: só pode ler arquivos do S3, não deletar).
   - MFA (Autenticação multifator)
@@ -376,7 +477,7 @@ Alguns aplicativos precisam de respostas muito rápidas. O Wavelength ajuda niss
   - Realidade aumentada (AR) e virtual (VR)
   - Monitoramento industrial com sensores
 
-#### Como funciona
+#### Para que serve
 
   - Você usa instâncias EC2, EBS, VPC etc. como em qualquer região AWS.
   - Mas os recursos rodam em zonas Wavelength, que estão fisicamente dentro das instalações das operadoras 5G.
@@ -508,7 +609,266 @@ EC2 é como alugar um computador na nuvem, com o sistema operacional e configura
 | Instâncias Reservadas (Reserved Instances – RI) | Você firma um compromisso de 1 ou 3 anos para usar um tipo de instância numa região ou zona. Garante desconto de até ~72 % sobre sob demanda | Workloads estáveis 24×7 (bancos, back‑ends de produção). Planejamento de custos previsível. |
 | Savings Plans | Compromisso de gasto hora médio (ex.: US$ 10/h) por 1 ou 3 anos. Aplica desconto automático a EC2, Fargate e Lambda, sem travar num tipo ou região específica (Compute SP). Há também o EC2 Instance SP (ligado à família/região, desconto maior). | mbientes elásticos que rodam continuamente, mas querem liberdade para mudar tipos ou migrar para Fargate/Lambda. |
 | Spot Instances | Você usa capacidade ociosa do data center com desconto de 70–90 %, mas a AWS pode encerrar a instância com 2 min de aviso se precisar da capacidade. | Tarefas tolerantes a interrupção: big data, renderização, CI/CD distribuído, containers stateless, machine learning batch. Pode ser combinado com Auto Scaling. |
+
 ---
+
+### EC2 Instance Connect
+
+É uma forma fácil e segura de acessar sua instância EC2 Linux via navegador, sem precisar de um cliente SSH instalado.
+
+#### Para que serve
+
+  - A AWS cria automaticamente uma chave temporária pública
+  - Essa chave é injetada na instância EC2 na hora do acesso
+  - A conexão SSH acontece por websocket seguro, direto do console
+  - Só funciona com instâncias EC2 baseadas em Amazon Linux, Ubuntu, etc., e que tenham:
+    - Acesso via porta 22 permitido no Security Group
+    - EC2 Instance Connect habilitado no sistema
+
+#### Vantagens
+
+  - Sem SSH local
+  - Acesso via navegador
+  - Mais seguro
+  - Fácil para dev/teste
+
+---
+
+### Security Group
+
+É como um firewall virtual que controla o tráfego de entrada e saída de instâncias EC2 (e outros recursos compatíveis).
+
+É um conjunto de regras que definem quem pode acessar sua instância EC2 e para onde ela pode se conectar.
+
+#### Para que serve
+
+  - Associado a instâncias EC2, Load Balancers, RDS, entre outros
+  - Funciona no nível da instância, não da rede inteira
+  - Pode ser reutilizado em várias instâncias
+  - As regras são stateful: se você permite entrada, a resposta sai automaticamente
+
+#### Vantagens
+
+  - Segurança clara
+    > Regras explícitas, controle fino
+  - Isolamento
+    > Cada instância pode ter seu próprio grupo
+  - Dinâmico
+    > Alterações nas regras são aplicadas em tempo real
+  - Reutilizável
+    > Pode associar o mesmo grupo a várias instâncias
+
+---
+
+### AMI (Amazon Machine Image)
+
+É uma imagem pré-configurada que contém tudo o que sua instância EC2 precisa para ser criada e executada.
+
+#### O que uma AMI contém
+
+  - Sistema operacional
+    > Ex: Amazon Linux, Ubuntu, Windows Server
+  - Volume(s) EBS
+    > Disco(s) com arquivos, banco, configs, etc.
+  - Permissões
+    > Quem pode usar a AMI (privada, pública, etc.)
+  - Configurações de boot
+    > Scripts de inicialização, informações de kernel
+
+#### Vantagens
+
+  - Rápido de lançar
+    > Cria EC2 em minutos com tudo pré-configurado
+  - Reutilizável
+    > Pode usar a mesma AMI para várias instâncias
+  - Seguro
+    > Cria uma cópia "congelada" do sistema
+  - Compartilhável
+    > Pode compartilhar com outras contas/regiões
+
+---
+
+### Amazon EBS (Elastic Block Store)
+
+É um serviço da AWS que fornece armazenamento em blocos durável e de alta performance para ser usado com instâncias EC2.
+
+O EBS funciona como um HD ou SSD virtual, que você conecta a uma instância EC2 para guardar arquivos, bancos de dados, logs, sistemas operacionais, etc.
+
+#### Para que serve
+
+  - Armazenamento em blocos → como um disco rígido (ideal para leitura/gravação rápida)
+  - Persistente → seus dados não somem quando a EC2 é parada ou reiniciada
+  - Conectado a 1 instância por vez (por padrão)
+  - Pode ser aumentado, copiado ou criado a partir de snapshots
+
+#### Vantagens
+
+  - Guardar arquivos da aplicação
+  - Armazenar banco de dados (como MySQL, PostgreSQL, MongoDB)
+  - Disco principal da instância EC2 (com o sistema operacional)
+  - Discos separados para logs, cache ou dados temporários
+
+---
+
+### Snapshots
+
+São cópias seguras(backups) de volumes, feitas ponto a ponto. É uma imagem de um volume tirado em um determinado momento, que pode ser armazenado, restaurado ou usado para criar um novo volume.
+
+#### Vantagens
+
+  - Backup
+  - Recuperação de desastres
+  - Clonagem de ambientes
+
+---
+
+### Snapshot X AMI
+
+| Descrição | Snapshot | AMI |
+|:------:|:------:|:------:|
+| O que é | Cópia de um volume EBS | Imagem completa de uma EC2 |
+| Usa EBS? | Sim | Sim (contém 1 ou mais snapshots EBS) |
+| Cria EC2? | Não diretamente | Sim, é usada para lançar novas EC2 |
+
+---
+
+### Amazon EFS (Elastic File System)
+
+É um serviço de armazenamento de arquivos na nuvem da AWS que pode ser acessado por várias instâncias EC2 ao mesmo tempo, como se fosse um sistema de arquivos compartilhado em rede.
+
+O EFS funciona como um disco em rede (NFS), onde várias máquinas podem ler e gravar arquivos ao mesmo tempo, de forma elástica, segura e escalável.
+
+Criado para Linux.
+
+#### Para que serve
+
+  - Arquivos
+    > Ideal para guardar arquivos compartilhados, não blocos (como o EBS)
+  - Multi-instância
+    > Pode ser acessado por várias EC2 ao mesmo tempo
+  - Elástico
+    > Escala automaticamente (você não precisa definir tamanho)
+  - Alta disponibilidade
+    > Replicado automaticamente em várias zonas de disponibilidade
+  - Seguro
+    > Suporta criptografia, controle de acesso (IAM, NFS), VPC, etc.
+  - Cobrança por uso
+    > Você paga somente pelo espaço usado (GB)
+
+
+#### Vantagens
+
+  - Fácil de usar com EC2 Linux
+  - Totalmente gerenciado pela AWS
+  - Alta performance e disponibilidade
+  - Paga só pelo que usar
+  - Permite backup automático
+
+---
+
+### Diferença entre EFS, EBS e S3
+
+| Serviço | Tipo | Uso principal | Pode ser compartilhado? |
+|:------:|:------:|:------:|:------:|
+| EBS | Bloco (disco) | Disco para EC2 (como HD/SSD) | Não (só 1 EC2 por vez) |
+| EFS | Arquivo (NFS) | Sistema de arquivos em rede para EC2 | Sim |
+| S3 | Objeto | Armazenamento de arquivos e dados estáticos | Sim (via API) |
+
+---
+
+### Amazon FSx (File System X)
+
+É um serviço da AWS que oferece sistemas de arquivos totalmente gerenciados, otimizados para diferentes necessidades — como Windows, Lustre (para alto desempenho), NetApp ONTAP, e OpenZFS.
+
+O Amazon FSx permite usar sistemas de arquivos poderosos e compatíveis com protocolos específicos (SMB, NFS, Lustre, etc.), sem precisar configurar ou manter servidores de arquivos.
+
+Criado para Windows.
+
+#### Para que serve
+
+  - Criar compartilhamentos de arquivos para aplicações corporativas
+  - Acelerar o processamento de dados com arquivos em paralelo (Lustre)
+  - Substituir servidores de arquivos físicos/virtuais
+  - Armazenar dados com alto desempenho e baixa latência
+
+#### Vantagens
+
+  - Gerenciado pela AWS
+    > Sem necessidade de instalar ou manter servidores
+  - Seguro
+    > Suporte a VPC, IAM, KMS, backups e criptografia
+  - Alta performance
+    > Projetado para uso intenso de dados
+  - Integração com outros serviços
+    > Ex: S3, EC2, AD, etc.
+  - Compatível com protocolos
+    > NFS, SMB, ZFS, etc. dependendo do tipo escolhido
+
+---
+
+### AWS Auto Scaling
+
+É um serviço que ajusta automaticamente a quantidade de recursos computacionais (como instâncias EC2) com base na demanda de uso, para garantir desempenho, economia e disponibilidade.
+
+O Auto Scaling aumenta ou reduz automaticamente a capacidade do seu sistema conforme necessário — sem você precisar fazer isso manualmente.
+
+#### O que ele pode escalar
+
+  - EC2 (servidores virtuais)
+    > Aumentar instâncias quando o tráfego sobe
+  - ECS (containers)
+    > Subir mais tarefas quando há mais carga
+  - DynamoDB (banco NoSQL)
+    > Ajustar capacidade de leitura/gravação
+  - Aurora (banco relacional)
+    > Adicionar réplicas para lidar com consultas
+
+#### Vantagens
+
+  - Resposta automática
+    > Reage a picos de tráfego em tempo real
+  - Economia de custos
+    > Reduz recursos quando a demanda cai
+  - Melhora desempenho
+    > Garante que o sistema esteja sempre com capacidade ideal
+  - Aumenta a disponibilidade
+    > Evita falhas ao substituir instâncias com problemas
+
+---
+
+### ELB (Elastic Load Balancing)
+
+É um serviço da AWS que distribui automaticamente o tráfego de rede entre vários recursos, como instâncias EC2, garantindo alta disponibilidade, escalabilidade e tolerância a falhas.
+
+O ELB funciona como um "porteiro inteligente" que recebe as requisições dos usuários e as envia para os servidores certos, equilibrando a carga entre eles.
+
+#### Para que serve
+
+  - Evitar sobrecarga em uma única instância EC2
+  - Reduzir tempo de resposta
+  - Manter o sistema disponível mesmo se um servidor falhar
+  - Trabalhar junto com Auto Scaling para escalar aplicações
+
+#### Vantagens
+
+  - Balanceamento automático da carga
+  - Integração com Auto Scaling e VPC
+  - Alta disponibilidade e tolerância a falhas
+  - Suporte a SSL/TLS (HTTPS)
+  - Monitoramento com CloudWatch
+
+#### Tipos de Load Balancer na AWS
+
+| Tipo | Indicado para | Protocolos suportados |
+|:------:|:------:|:------:|
+| Application Load Balancer (ALB) | Aplicações web (HTTP/HTTPS), APIs REST | HTTP, HTTPS (nível 7 - camada de aplicação) |
+| Network Load Balancer (NLB) | Alto desempenho e baixa latência | TCP, TLS, UDP (nível 4 - transporte) |
+| Gateway Load Balancer (GWLB) | Integração com appliances de segurança | IP (camada 3 - rede) |
+| Classic Load Balancer (CLB) | Modelo mais antigo, compatível com EC2 | HTTP, HTTPS, TCP (camada mista) |
+
+---
+
+
 
 ## Dicas Finais
 
