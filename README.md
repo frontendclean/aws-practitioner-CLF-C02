@@ -90,6 +90,17 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Amazon Neptune](#amazon-neptune)
 - [AWS Glue](#aws-glue)
 - [Amazon Redshift](#amazon-redshift)
+- [VPC (Virtual Private Cloud)](#vpc-virtual-private-cloud)
+- [Subnet](#subnet)
+- [Internet Gateway (IGW)](#internet-gateway-igw)
+- [Network ACL (Access Control List)](#network-acl-access-control-list)
+- [VPC Peering](#vpc-peering)
+- [VPC Endpoints](#vpc-endpoints)
+- [VPC Flow Logs](#vpc-flow-logs)
+- [VPN (Virtual Private Network)](#vpn-virtual-private-network)
+- [AWS PrivateLink](#aws-privatelink)
+- [AWS Direct Connect ](#aws-direct-connect)
+- [AWS Transit Gateway](#aws-transit-gateway)
 
 ---
 
@@ -1348,6 +1359,252 @@ O Redshift é ideal para análise de dados em larga escala, como relatórios, da
 | Análise de logs | Agrega milhões de eventos em segundos |
 | Relatórios de vendas e KPIs | Permite explorar dados históricos |
 | Análise de comportamento de usuários | Permite cruzar dados de diferentes fontes |
+
+---
+
+### VPC (Virtual Private Cloud)
+
+É um serviço da AWS que permite criar uma rede virtual privada, isolada dentro da nuvem da AWS, onde você pode lançar recursos como EC2, RDS, Lambda, com controle total sobre o tráfego e a segurança.
+
+A VPC é como uma rede privada dentro da AWS, onde você define quem pode entrar, sair, e como os serviços se comunicam entre si — como se fosse uma "sala fechada" na nuvem.
+
+#### Vantagens
+
+  - Sub-redes (subnets): segmentam sua rede em partes públicas e privadas
+  - Internet Gateway: permite acesso à internet
+  - Security Groups e NACLs: controlam o tráfego de entrada e saída
+  - Route Tables: definem os caminhos que o tráfego pode seguir
+  - VPN ou Direct Connect: conecta sua rede local à VPC
+  - Peering e Transit Gateway: conecta várias VPCs
+
+#### Componentes principais da VPC
+
+| Componente | Função |
+|:------:|:------:|
+| CIDR Block | Faixa de IPs da rede (ex: 10.0.0.0/16) |
+| Subnets | Dividem a VPC em zonas públicas ou privadas |
+| Internet Gateway | Permite acesso à internet |
+| NAT Gateway | Permite que subnets privadas acessem a internet |
+| Route Table | Define o roteamento do tráfego |
+| Security Groups | Firewall em nível de instância (EC2, RDS, etc) |
+| NACLs | Firewall em nível de subnet |
+
+---
+
+### Subnet 
+
+Uma subnet (sub-rede) é uma divisão lógica dentro de uma VPC (Virtual Private Cloud) na AWS. Ela define um bloco de endereços IP que pode ser usado para lançar recursos como instâncias EC2, bancos de dados, etc.
+
+A subnet é como um "quarto" dentro da casa (VPC), onde você coloca recursos da nuvem. Cada quarto pode ter acesso diferente à internet e a outros serviços.
+
+#### Vantagens
+
+  - Cada subnet pertence a uma única zona de disponibilidade (AZ) dentro de uma região
+  - Pode ser pública (com acesso à internet) ou privada (sem acesso direto à internet)
+  - Recursos são lançados dentro de subnets (ex: EC2, RDS, Lambda com VPC)
+  - As subnets são definidas com uma faixa de IPs (CIDR block)
+
+#### Tipos
+
+| Tipo de Subnet | Acesso à Internet? | Exemplo de uso |
+|:------:|:------:|:------:|
+| Pública | Sim (via Internet Gateway) | Servidores web, load balancers |
+| Privada | Não diretamente | Bancos de dados, servidores internos |
+
+---
+
+### Internet Gateway (IGW)
+
+É um componente da AWS que permite que recursos em uma VPC se comuniquem com a internet — tanto para enviar quanto para receber tráfego.
+
+O Internet Gateway é a "porta de entrada e saída" para a internet dentro da sua VPC.
+
+#### Vantagens
+
+  - Permite instâncias EC2 em subnets públicas acessarem a internet (e serem acessadas)
+  - Funciona em conjunto com a Route Table para direcionar o tráfego
+  - É altamente disponível e gerenciado pela AWS (sem custo adicional por si só)
+  - Só pode estar associado a uma VPC por vez
+
+---
+
+### Network ACL (Access Control List)
+
+É uma lista de regras de controle de acesso à rede, usada para permitir ou negar tráfego que entra ou sai de uma subnet dentro de uma VPC.
+
+A Network ACL (NACL) é um firewall em nível de subnet, que define quais pacotes podem passar com base em regras numéricas.
+
+#### Vantagens
+
+  - Atua em nível de subnet, protegendo todos os recursos dentro dela
+  - É sem estado (stateless): as regras de entrada e saída são independentes
+  - Regras são avaliadas em ordem numérica (da menor para a maior)
+  - Pode ter regras para permitir ou negar tráfego
+  - É possível associar uma única NACL por subnet, mas uma NACL pode ser usada por várias subnets
+
+---
+
+### VPC Peering
+
+É um recurso da AWS que permite conectar duas VPCs (Virtual Private Clouds), permitindo que os recursos dessas VPCs se comuniquem como se estivessem na mesma rede, sem precisar passar pela internet.
+
+O VPC Peering é como fazer um "cabo direto" entre duas redes privadas dentro da AWS.
+
+#### Vantagens
+
+  - Permite tráfego privado entre instâncias em VPCs diferentes
+  - Funciona dentro da mesma região ou entre regiões (inter-region peering)
+  - Não há roteamento via internet, VPN ou gateway — é direto
+  - As VPCs podem estar em contas diferentes
+  - Tráfego é criptografado automaticamente pela infraestrutura da AWS
+  - Unidirecional por padrão, mas normalmente configurado como bidirecional
+
+---
+
+### VPC Endpoints
+
+VPC Endpoints são recursos da AWS que permitem que você se conecte privadamente a serviços da AWS (como S3, DynamoDB) sem passar pela internet pública, diretamente de dentro da sua VPC.
+
+Um VPC Endpoint é como um "atalho seguro e privado" entre a sua VPC e serviços da AWS, sem usar internet, VPN ou NAT Gateway.
+
+#### Tipos 
+
+| Tipo | Descrição |
+|:------:|:------:|
+| Interface Endpoint | Usa uma ENI (Elastic Network Interface) com IPs privados dentro da VPC. Usado para a maioria dos serviços da AWS (ex: SSM, API Gateway, etc). |
+| Gateway Endpoint | Usado especificamente para S3 e DynamoDB. Adiciona uma rota na Route Table. Não usa ENI. |
+
+#### Vantagens
+
+  - Mais seguro: o tráfego não sai da rede privada da AWS
+  - Mais barato: reduz uso de NAT Gateway ou internet
+  - Mais simples: não precisa configurar VPN, proxies ou IP público
+  - Melhor performance e latência
+
+---
+
+### VPC Flow Logs
+
+VPC Flow Logs são registros que capturam informações sobre o tráfego de rede que entra e sai das interfaces de rede em sua VPC (Virtual Private Cloud) na AWS.
+
+Os VPC Flow Logs funcionam como "câmeras de segurança" da rede: mostram quem está se comunicando com quem, quando e como dentro da sua VPC.
+
+#### O que eles registram
+
+  - Endereços IP de origem e destino
+  - Portas de origem e destino
+  - Protocolo (TCP, UDP, etc.)
+  - Status da conexão (aceito ou rejeitado)
+  - Quantidade de dados enviados/recebidos
+  - Tempo de início e fim do fluxo
+
+#### Onde podem ser criados
+
+  - VPC inteira
+  - Subnets
+  - Interfaces de rede (ENI) individuais
+
+#### Para onde os logs vão
+
+  - Amazon CloudWatch Logs (para monitoramento e alertas)
+  - Amazon S3 (para arquivamento e análise posterior)
+
+---
+
+### VPN (Virtual Private Network)
+
+É uma tecnologia que cria uma conexão segura e criptografada entre dois pontos através da internet ou de outra rede pública.
+
+A VPN funciona como um "túnel seguro" que protege os dados enquanto trafegam entre o seu dispositivo ou rede local e outro ambiente, como a AWS ou um servidor remoto.
+
+#### Vantagens
+
+  - Segurança: Criptografa os dados transmitidos
+  - Privacidade: Oculta o tráfego da rede pública
+  - Acesso remoto seguro: Permite que usuários ou redes se conectem com segurança a uma rede corporativa
+  - Conexão site-to-site: Integra redes diferentes (por exemplo, sua rede on-premises com uma VPC da AWS)
+
+#### Tipos de VPN na AWS
+
+| Tipo | Descrição |
+|:------:|:------:|
+| Site-to-Site VPN | Conecta a sua rede local (on-premises) a uma VPC na AWS |
+| Client VPN | Permite que usuários individuais se conectem com segurança à VPC |
+| Software VPN | Soluções de terceiros instaladas em instâncias EC2 |
+
+---
+
+### AWS PrivateLink
+
+É um serviço que permite acessar serviços da AWS, serviços de terceiros ou serviços próprios hospedados em VPCs diferentes, de forma privada, sem passar pela internet pública.
+
+O PrivateLink cria uma conexão privada e segura entre a sua VPC e outro serviço, usando a rede da AWS, sem expor IPs públicos ou depender de Internet Gateway, NAT ou VPN.
+
+#### Vantagens
+
+  - Usa Interface VPC Endpoints (com ENIs privados)
+  - O tráfego não sai da rede da AWS
+  - Suporta serviços da AWS, Marketplace ou serviços personalizados
+  - É ideal para evitar exposição à internet
+  - Usa DNS interno para facilitar acesso ao serviço
+
+#### Quando usar o AWS PrivateLink
+
+| Situação | Benefício com PrivateLink |
+|:------:|:------:|
+| Acessar um serviço em outra VPC | Conexão privada e segura, mesmo entre contas diferentes |
+| Fornecer um serviço para outras contas | Você publica como um "serviço PrivateLink" |
+| Acessar serviços da AWS com segurança | Comunicação sem passar pela internet |
+| Substituir peering em arquiteturas complexas | Escala melhor e mais seguro que VPC Peering |
+
+---
+
+### AWS Direct Connect 
+
+É um serviço que permite estabelecer uma conexão de rede física e dedicada entre o seu ambiente local (como um data center, escritório ou colocation) e a AWS, sem passar pela internet pública.
+
+O Direct Connect é como instalar um "cabo direto e seguro" entre sua empresa e a AWS, oferecendo mais velocidade, confiabilidade e segurança que uma conexão pela internet.
+
+#### Vantagens
+
+  - Baixa latência e alta largura de banda
+  - Mais seguro: não passa pela internet
+  - Previsibilidade de desempenho (menos variação de tráfego)
+  - Economia em transferência de dados (taxas mais baixas que Internet Gateway ou VPN)
+
+#### Exemplos de uso
+
+| Situação | Como o Direct Connect ajuda |
+|:------:|:------:|
+| Empresa com alto volume de dados | Transfere dados de forma rápida e econômica |
+| Aplicações sensíveis à latência | Garante estabilidade na comunicação |
+| Necessidade de conformidade ou segurança | Evita tráfego pela internet |
+| Substituição de VPN por algo mais robusto | Mais confiável e performático que VPN/IPsec |
+
+---
+
+### AWS Transit Gateway
+
+É um serviço que permite conectar múltiplas VPCs e redes locais (on-premises) por meio de um ponto central de roteamento, de forma escalável, segura e eficiente.
+
+O Transit Gateway funciona como um "hub central" que simplifica a comunicação entre várias VPCs, contas e conexões Direct Connect/VPN, evitando a complexidade de conexões diretas entre todas elas.
+
+#### Vantagens
+
+  - Centraliza o roteamento entre várias redes
+  - Escala para centenas de VPCs
+  - Isolamento e controle com políticas e domínios de roteamento
+  - Suporta VPN, Direct Connect e VPCs multi-conta
+  - Integra com AWS Resource Access Manager (RAM) para compartilhar com outras contas
+
+#### Exemplos de uso
+
+| Situação | Como o Transit Gateway ajuda |
+|:------:|:------:|
+| Muitas VPCs que precisam se comunicar | Elimina a complexidade do VPC Peering em malha |
+| Ambientes multi-conta com redes separadas | Conecta todas através de um hub |
+| Conexão híbrida com redes locais (on-premises) | Facilita o roteamento via Direct Connect ou VPN |
+| Centralizar regras e segurança de rede | Usa domínios de roteamento e ACLs mais controlados |
 
 ---
 
