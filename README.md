@@ -82,6 +82,14 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Criptografia no Amazon S3](#criptografia-no-amazon-s3)
 - [AWS Storage Gateway](#aws-storage-gateway)
 - [AWS Snow Family](#aws-snow-family)
+- [Bancos de Dados](#bancos-de-dados)
+- [Amazon RDS](#amazon-rds)
+- [Amazon Aurora](#amazon-aurora)
+- [Amazon ElastiCache](#amazon-elasticache)
+- [Amazon DynamoDB](#amazon-dynamodb)
+- [Amazon Neptune](#amazon-neptune)
+- [AWS Glue](#aws-glue)
+- [Amazon Redshift](#amazon-redshift)
 
 ---
 
@@ -1115,6 +1123,231 @@ A Snow Family ajuda a mover grandes volumes de dados de forma segura, eficiente 
   - Processamento local com Snowcone ou Snowball Edge com EC2 e Lambda embutidos
   - Dispositivo é bloqueado e se autodestrói logicamente após uso incorreto
   - Suporte a chaves gerenciadas pelo AWS KMS
+
+---
+
+### Bancos de Dados
+
+A AWS oferece diversos tipos de bancos de dados, otimizados para diferentes casos de uso, modelos de dados e desempenho. Eles são agrupados em categorias baseadas no tipo de estrutura e finalidade.
+
+#### Bancos de Dados Relacionais (SQL)
+
+Armazenam dados em tabelas com colunas e linhas. Usam linguagens como SQL.
+
+| Serviço | Descrição | Compatível com |
+|:------:|:------:|:------:|
+| Amazon RDS | Banco relacional gerenciado | MySQL, PostgreSQL, Oracle, SQL Server, MariaDB |
+| Amazon Aurora | Versão otimizada da AWS com alta performance | Compatível com MySQL e PostgreSQL |
+
+#### Bancos de Dados Não Relacionais (NoSQL)
+
+Armazenam dados em formatos flexíveis (chave-valor, documentos, grafos, etc.).
+
+| Serviço | Tipo | Descrição |
+|:------:|:------:|:------:|
+| Amazon DynamoDB | Chave-valor / Documento | Escalável, baixa latência, sem servidor |
+| Amazon ElastiCache | Chave-valor em memória | Cache de alta velocidade (Redis ou Memcached) Mais caro |
+
+#### Bancos de Dados em Grafos
+
+Usados para representar e consultar relacionamentos complexos (redes sociais, recomendações).
+
+| Serviço | Descrição |
+|:------:|:------:|
+| Amazon Neptune | Banco de dados em grafo altamente conectado |
+
+#### Bancos de Dados de Documentos
+
+Armazenam dados como documentos (geralmente em JSON).
+
+| Serviço | Descrição |
+|:------:|:------:|
+| Amazon DocumentDB | Compatível com MongoDB (armazenamento por documento) |
+
+#### Bancos de Dados de Tempo-Série
+
+Otimizados para dados cronológicos (ex: métricas, IoT).
+
+| Serviço | Descrição |
+|:------:|:------:|
+| Amazon Timestream | Armazena e consulta séries temporais em escala |
+
+#### Quando usar cada tipo?
+
+| Serviço | Descrição |
+|:------:|:------:|
+| Relacional | Sistemas ERP, bancos, e-commerces tradicionais | 
+| NoSQL | Aplicações web/mobile, cargas imprevisíveis | 
+| Grafo | Recomendação, redes sociais, dependências | 
+| Documento | Catálogos, perfis de usuários, apps flexíveis | 
+
+---
+
+### Amazon RDS 
+
+O Amazon RDS (Relational Database Service) é um serviço da AWS que permite criar, operar e escalar bancos de dados relacionais de forma automática e gerenciada, sem se preocupar com tarefas como instalação, backups, atualizações ou alta disponibilidade.
+
+O RDS é um banco de dados relacional na nuvem, pronto para uso, com manutenção automatizada feita pela AWS.
+
+#### Vantagens
+
+  - Backups automáticos
+  - Escalabilidade vertical (CPU/RAM) e horizontal (replicas de leitura)
+  - Atualizações e patches automatizados
+  - Segurança com criptografia e controle via IAM e VPC
+  - Alta disponibilidade com Multi-AZ
+  - Monitoramento com Amazon CloudWatch
+
+#### Bancos compatíveis no RDS
+
+| Banco de dados | Suporte via RDS |
+|:------:|:------:|
+| MySQL | sim |
+| PostgreSQL | sim |
+| MariaDB | sim |
+| Oracle | sim |
+| Microsoft SQL Server | sim |
+| Amazon Aurora | sim (compatível com MySQL/PostgreSQL) |
+
+---
+
+### Amazon Aurora
+
+O Amazon Aurora é um banco de dados relacional gerenciado pela AWS, compatível com MySQL e PostgreSQL, que oferece alta performance, escalabilidade e disponibilidade, sendo até 5 vezes mais rápido que o MySQL padrão e 3 vezes mais rápido que o PostgreSQL.
+
+O Aurora é um banco de dados moderno da AWS, totalmente gerenciado, que combina a facilidade do RDS com alta performance, resiliência e custos menores que bancos comerciais como Oracle ou SQL Server.
+
+#### Vantagens
+
+  - Alta performance (até 5x mais rápido que MySQL no RDS)
+  - Alta disponibilidade (Multi-AZ e replicação automática em até 6 cópias)
+  - Escalabilidade automática (Aurora Serverless v2)
+  - Criptografia em repouso e em trânsito
+  - Backup contínuo para o S3
+  - Failover automático em segundos
+  - Compatível com MySQL e PostgreSQL (mesmo driver e comandos)
+
+#### Modos de uso
+
+| Modo | Descrição |
+|:------:|:------:|
+| Aurora Provisioned | Capacidade fixa, ideal para cargas constantes |
+| Aurora Serverless | Capacidade automática sob demanda (paga pelo uso) |
+
+#### Diferenças entre Aurora e RDS
+
+| Recurso | RDS MySQL/PostgreSQL | Aurora MySQL/PostgreSQL |
+|:------:|:------:|:------:|
+| Performance | Padrão | Muito maior (até 5x/3x) |
+| Armazenamento | Manual/definido | Escala automaticamente (até 128 TB) |
+| Replica de leitura | 5 | Até 15 |
+| Tempo de failover | 1-2 minutos | Menos de 30 segundos |
+| Custo | Médio | Um pouco maior, mas mais eficiente |
+
+---
+
+### Amazon ElastiCache
+
+É um serviço da AWS que permite criar e gerenciar caches de dados em memória, de forma totalmente gerenciada, usando os mecanismos Redis ou Memcached.
+
+O ElastiCache acelera o acesso aos dados, armazenando informações temporariamente em memória RAM, o que reduz a carga sobre bancos de dados e melhora o desempenho de aplicações.
+
+#### Vantagens
+
+  - Alta performance (respostas em microssegundos)
+  - Cache distribuído para aplicações web, APIs, bancos de dados
+  - Reduz a latência e a carga no banco de dados
+  - Gerenciado: AWS cuida de instalação, patch, monitoramento, failover
+  - Compatível com Redis e Memcached
+
+---
+
+### Amazon DynamoDB
+
+É um banco de dados NoSQL totalmente gerenciado pela AWS, projetado para oferecer alta performance, baixa latência e escalabilidade automática, mesmo com milhões de requisições por segundo.
+
+O DynamoDB é ideal para aplicações modernas que precisam de respostas rápidas, grande volume de dados e escalabilidade sob demanda, sem a complexidade de gerenciar infraestrutura.
+
+#### Vantagens
+
+  - Latência de milissegundos
+  - Escalabilidade automática (on-demand ou provisionado)
+  - Armazena dados como pares chave-valor ou documentos JSON
+  - Totalmente gerenciado: sem servidores, sem patch, sem backup manual
+  - Alta disponibilidade e replicação automática
+  - Suporte a IAM, criptografia, e auditoria com CloudTrail
+
+---
+
+### Amazon Neptune
+
+É um serviço de banco de dados de grafos totalmente gerenciado da AWS, projetado para armazenar e consultar relacionamentos complexos entre dados, como redes sociais, sistemas de recomendação, e detecção de fraudes.
+
+O Neptune é um banco de dados orientado a grafos, ideal quando o foco não é só os dados em si, mas como eles se conectam.
+
+#### Vantagens
+
+  - Suporta dois principais modelos de grafos:
+    - Property Graph, com a linguagem Gremlin
+    - RDF (Resource Description Framework), com a linguagem SPARQL
+  - Totalmente gerenciado: backups, replicação, failover
+  - Segurança com VPC, IAM, KMS e integração com CloudTrail
+  - Baixa latência para consultas complexas
+  - Ideal para dados com muitos relacionamentos
+
+---
+
+### AWS Glue
+
+É um serviço de integração e preparação de dados totalmente gerenciado da AWS. Ele facilita a extração, transformação e carga (ETL) de dados — ou seja, ajuda a coletar dados de diferentes fontes, transformá-los e enviá-los para outro lugar, como um data lake ou banco de dados.
+
+O AWS Glue é como um "encanamento inteligente" para organizar dados brutos, transformá-los, e colocá-los onde podem ser analisados.
+
+#### Vantagens
+
+  - ETL sem servidor: não precisa configurar servidores, ele escala automaticamente
+  - Catálogo de dados: registra metadados (nomes, formatos, tipos de dados) para facilitar buscas e análises
+  - Transformações em Python ou Scala
+  - Glue Studio: interface visual para montar fluxos ETL sem código
+  - Glue DataBrew: ferramenta no-code para preparar dados com interface gráfica
+  - Suporte a Job Triggers, Workflows e partições
+
+#### Casos de uso
+
+| Caso | O que o Glue faz |
+|:------:|:------:|
+| Preparar dados para análise | Limpeza, transformação, formatação | 
+| Integrar dados de várias fontes | Junta dados de S3, RDS, Redshift, etc. | 
+| Criar data lakes | Organiza e cataloga os dados no S3 | 
+| Atualizar catálogos de dados | Descobre e registra automaticamente os esquemas | 
+| Processamento de logs, IoT | Transforma e organiza grandes volumes de dados | 
+
+---
+
+### Amazon Redshift
+
+É um serviço de data warehouse totalmente gerenciado da AWS. Ele foi projetado para armazenar e analisar grandes volumes de dados com alta performance, usando consultas SQL.
+
+O Redshift é ideal para análise de dados em larga escala, como relatórios, dashboards e BI (Business Intelligence), funcionando como um banco de dados analítico.
+
+#### Vantagens
+
+  - Alta performance para consultas em terabytes ou petabytes de dados
+  - Usa armazenamento colunar e compressão para melhorar velocidade
+  - Integrado com ferramentas como Amazon QuickSight, Tableau, Power BI
+  - Suporte a consultas paralelas (MPP – processamento massivamente paralelo)
+  - Pode se integrar a dados em S3, RDS, Aurora, DynamoDB, etc.
+  - Suporte a Redshift Spectrum: consultar dados diretamente no S3 sem carregar
+  - Segurança com VPC, IAM, KMS e criptografia
+
+#### Casos de uso
+
+| Caso | Por que usar o Redshift |
+|:------:|:------:|
+| BI e dashboards executivos | Consultas rápidas para grandes volumes |
+| Análise de logs | Agrega milhões de eventos em segundos |
+| Relatórios de vendas e KPIs | Permite explorar dados históricos |
+| Análise de comportamento de usuários | Permite cruzar dados de diferentes fontes |
 
 ---
 
