@@ -81,6 +81,7 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Versionamento no Amazon S3](#versionamento-no-amazon-s3)
 - [Criptografia no Amazon S3](#criptografia-no-amazon-s3)
 - [AWS Storage Gateway](#aws-storage-gateway)
+- [Amazon S3 Transfer Acceleration](#amazon-s3-transfer-acceleration)
 - [AWS Snow Family](#aws-snow-family)
 - [Bancos de Dados](#bancos-de-dados)
 - [Amazon RDS](#amazon-rds)
@@ -101,6 +102,23 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS PrivateLink](#aws-privatelink)
 - [AWS Direct Connect ](#aws-direct-connect)
 - [AWS Transit Gateway](#aws-transit-gateway)
+- [Amazon Route 53](#amazon-route-53)
+- [Amazon CloudFront](#amazon-cloudfront)
+- [AWS Global Accelerator](#aws-global-accelerator)
+- [Docker](#docker)
+- [ECS (Elastic Container Service)](#ecs-elastic-container-service)
+- [EKS (Elastic Kubernetes Service)](#eks-elastic-kubernetes-service)
+- [AWS Fargate](#aws-fargate)
+- [Amazon Kinesis](#amazon-kinesis)
+- [Amazon SQS (Simple Queue Service)](#amazon-sqs-simple-queue-service)
+- [Amazon SNS (Simple Notification Service)](#amazon-sns-simple-notification-service)
+- [AWS Batch](#aws-batch)
+- [Amazon Lightsail](#amazon-lightsail)
+- [AWS Lambda](#aws-lambda)
+- [AWS Control Tower](#aws-control-tower)
+- [AWS RAM (Resource Access Manager)](#aws-ram-resource-access-manager)
+- [AWS Trusted Advisor](#aws-trusted-advisor)
+- [AWS Service Catalog](#aws-service-catalog)
 
 ---
 
@@ -1105,6 +1123,12 @@ Emula uma biblioteca de fitas magnéticas (VTL) compatível com seu software de 
 
 ---
 
+### Amazon S3 Transfer Acceleration
+
+É um recurso do Amazon S3 que aumenta a velocidade de upload e download de arquivos (objetos) usando a rede global da Amazon CloudFront.
+
+---
+
 ### AWS Snow Family
 
 É um conjunto de dispositivos físicos fornecidos pela Amazon para transferência de dados em larga escala entre seu ambiente local (on-premises) e a nuvem da AWS — especialmente útil quando a rede é lenta, cara ou inexistente.
@@ -1605,6 +1629,413 @@ O Transit Gateway funciona como um "hub central" que simplifica a comunicação 
 | Ambientes multi-conta com redes separadas | Conecta todas através de um hub |
 | Conexão híbrida com redes locais (on-premises) | Facilita o roteamento via Direct Connect ou VPN |
 | Centralizar regras e segurança de rede | Usa domínios de roteamento e ACLs mais controlados |
+
+---
+
+### Amazon Route 53
+
+É o serviço de DNS (Domain Name System) da AWS, usado para registrar domínios, gerenciar nomes de domínio e rotear tráfego para aplicações na internet ou internamente na nuvem.
+
+O Route 53 traduz nomes de domínio (como www.exemplo.com) em endereços IP (como 192.0.2.1) e pode controlar para onde o tráfego vai, com alta disponibilidade e baixa latência.
+
+#### Vantagens
+
+  - DNS Gerenciado
+    - Resolve nomes de domínio para IPs de instâncias, ELBs etc.
+  - Registro de Domínio
+    - Você pode comprar e gerenciar domínios dentro da AWS
+  - Roteamento de Tráfego
+    - Direciona usuários com base em regras geográficas, failover, latência etc.
+  - Health Checks
+    - Monitora recursos e desvia tráfego em caso de falha
+  - DNS Interno (privado)
+    - Resolve nomes dentro de uma VPC (sem expor para a internet)
+
+#### Políticas do Amazon Route 53
+
+As políticas do Amazon Route 53 (Route 53 routing policies) definem como o tráfego de rede será roteado para os recursos configurados nos registros DNS (como instâncias EC2, buckets S3, load balancers etc.).
+
+Essas políticas controlam quem acessa o quê, de onde, e com que prioridade, com base em diferentes critérios.
+
+#### Tipos de Routing Policies (Políticas de Roteamento) no Route 53:
+
+| Política | Descrição | Quando usar |
+|:------:|:------:|:------:|
+| Simple Routing | Um único destino para o domínio. | Sites ou apps simples com um único backend. |
+| Weighted Routing | Distribui o tráfego entre múltiplos recursos com pesos definidos. | Balanceamento de carga com pesos diferentes. |
+| Latency-based Routing | Direciona o tráfego para a região da AWS com menor latência. | Melhorar a performance com base na geolocalização. |
+| Failover Routing | Usa um destino primário e outro de backup caso o primário falhe. | Alta disponibilidade e recuperação de falhas. |
+| Geolocation Routing | Direciona com base na localização geográfica do usuário (país, estado, etc.). | Mostrar conteúdo regionalizado ou cumprir requisitos locais. |
+| Geoproximity Routing | Direciona com base na proximidade do usuário e do recurso (usado com Route 53 Traffic Flow). | Reduzir latência e controlar balanceamento com mais precisão. |
+| Multivalue Answer Routing | Retorna vários IPs e atua como um mini balanceador de carga com verificação de saúde. | Alta disponibilidade sem usar um ELB. |
+
+---
+
+### Amazon CloudFront
+
+É o serviço de CDN (Content Delivery Network) da AWS. Ele acelera a entrega de conteúdos (como sites, vídeos, APIs, arquivos e apps) para usuários no mundo todo, ao distribuir o conteúdo em centenas de pontos de presença (edge locations) espalhados globalmente.
+
+#### Como funciona
+
+  - Um usuário acessa seu conteúdo (por exemplo, uma imagem ou vídeo em seu site).
+  - O CloudFront redireciona a requisição para o edge location mais próximo do usuário.
+  - Se o conteúdo já está nesse local (em cache), ele é entregue imediatamente → rápido e com baixa latência.
+  - Se não está, o CloudFront busca o conteúdo da origem (como S3, EC2, API Gateway, ou servidor externo), entrega ao usuário e guarda em cache para futuras requisições.
+
+#### Para que serve
+
+  - Sites estáticos e dinâmicos (HTML, CSS, JS, APIs)
+  - Streaming de vídeo (HLS, DASH)
+  - Entrega de software e arquivos grandes
+  - Proteção de aplicações com WAF, TLS, restrições geográficas
+  - Integração com S3, ALB, EC2, Lambda@Edge
+
+---
+
+### AWS Global Accelerator
+
+É um serviço da AWS que melhora a performance e a disponibilidade de aplicações globais, direcionando o tráfego dos usuários para a AWS usando a rede global da Amazon em vez da internet pública.
+
+#### Vantagens
+
+  - Quando você ativa o Global Accelerator, ele fornece dois IPs fixos globais (Anycast).
+  - Usuários de qualquer lugar do mundo se conectam a esses IPs.
+  - O tráfego entra na edge location mais próxima do usuário (ponto de presença da AWS).
+  - A partir dali, os dados viajam pelo backbone da AWS, que é mais rápido, confiável e seguro do que a internet pública.
+  - O serviço redireciona automaticamente para a região AWS mais saudável e próxima da origem, com base em latência e disponibilidade.
+
+#### Casos de uso
+
+| Uso | Benefício |
+|:------:|:------:|
+| Aplicações globais com usuários espalhados | Roteamento mais rápido e consistente |
+| Failover automático entre regiões | Alta disponibilidade |
+| Jogos online, fintechs, VoIP, APIs críticas | Baixa latência e alta confiabilidade |
+| Substituir IPs elásticos ou balanceadores regionais | IP fixo global simplifica integração e firewall |
+
+#### Diferenças entre Global Accelerator e CloudFront
+
+| Recurso | Global Accelerator | CloudFront |
+|:------:|:------:|:------:|
+| Tipo de tráfego | TCP/UDP direto (ex.: APIs, aplicações, sockets) | HTTP/HTTPS com cache (ex.: sites, imagens) |
+| Cache | Não | Sim |
+| IP fixo | Sim (2 IPs globais) | Não |
+| Roteamento inteligente | Sim (por latência, saúde) | Sim (por geolocalização, TTL) |
+| Indicado para | APIs, backends, aplicações | Sites estáticos, conteúdo web, vídeos |
+
+---  
+
+### Docker 
+
+É uma plataforma de containers que permite empacotar uma aplicação junto com todas as suas dependências (bibliotecas, configurações, etc.) em um único container. Isso garante que a aplicação funcione da mesma forma em qualquer ambiente — seja no seu computador, em um servidor ou na nuvem.
+
+Docker é como uma "caixa" que carrega seu programa pronto para rodar, não importa onde.
+
+#### Vantagens
+
+  - Portabilidade
+    - roda igual em qualquer lugar (dev, teste, produção)
+  - Leveza e velocidade
+    - containers são mais rápidos e usam menos recursos que máquinas virtuais
+  - Reprodutibilidade
+    - elimina o famoso "na minha máquina funciona"
+  - Escalabilidade
+    - facilita rodar várias instâncias da aplicação
+  - Isolamento
+    - cada container roda separado dos outros
+
+--- 
+
+### ECS (Elastic Container Service)
+
+É um serviço da AWS para orquestração de containers, ou seja, ele gerencia o desdobramento, execução, escalonamento e monitoramento de containers Docker em ambientes da AWS.
+
+O ECS é como um "gerente de containers" que garante que seus containers estejam sempre funcionando, escalando conforme necessário, e rodando onde for mais eficiente.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Suporte nativo a Docker | ECS usa containers Docker como unidade de execução |
+| Orquestração automática | Decide onde e como os containers rodam (como o Kubernetes faz) |
+| Auto scaling | Escala containers ou instâncias automaticamente |
+| Integração com AWS | Funciona perfeitamente com IAM, CloudWatch, ALB, ECR, etc. |
+| Dois modos de execução | Você pode rodar no EC2 (com servidor) ou Fargate (serverless) |
+
+--- 
+
+### EKS (Elastic Kubernetes Service)
+
+É o serviço gerenciado da AWS para rodar clusters Kubernetes. Ele permite que você implante, gerencie e escale aplicações em containers usando Kubernetes, sem precisar configurar manualmente todo o cluster.
+
+O EKS é o Kubernetes "pronto para usar" na AWS — você usa o poder do Kubernetes, e a AWS cuida da infraestrutura.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Gerenciado pela AWS | AWS configura, atualiza e mantém o plano de controle (control plane) |
+| Integração com AWS | Funciona bem com IAM, VPC, ELB, CloudWatch, EBS, etc. |
+| Totalmente compatível | É Kubernetes padrão — tudo que funciona em Kubernetes funciona no EKS |
+| Alta disponibilidade | O control plane roda de forma redundante e segura |
+
+#### Diferença entre ECS e EKS
+
+| Característica | ECS | EKS |
+|:------:|:------:|:------:|
+| Orquestrador | Proprietário da AWS | Kubernetes (open-source) |
+| Curva de aprendizado | Mais simples | Mais complexa, mas mais flexível |
+| Comunidade | AWS | Mundial (open-source) |
+| Portabilidade | Menor (mais preso à AWS) | Alta (mesmo Kubernetes em qualquer lugar) |
+
+#### Kubernetes 
+
+O Kubernetes (também chamado de K8s) é uma plataforma open-source de orquestração de containers. Ele automatiza o processo de implantação, gerenciamento, escalonamento e atualização de aplicações em containers, como os criados com Docker.
+
+O Kubernetes é como um "sistema operacional para containers" — ele cuida de tudo: onde rodar, como escalar, como reiniciar se algo falhar, etc.
+
+--- 
+
+### AWS Fargate
+
+É um serviço da AWS que permite executar containers (como Docker) sem precisar gerenciar servidores ou clusters. Ele funciona como um "motor serverless" para serviços de orquestração como o ECS (Elastic Container Service) e o EKS (Kubernetes).
+
+Com o Fargate, você executa containers sem se preocupar com instâncias EC2, dimensionamento ou gerenciamento de infraestrutura.
+
+#### Vantagens
+
+  - Serverless para containers
+    - Não precisa configurar EC2, VPCs, clusters ou escalabilidade manual
+  - Escala automática
+    - Executa desde 1 até milhares de containers, conforme a carga
+  - Segurança isolada
+    - Cada tarefa/container roda de forma isolada
+  - Custo sob demanda
+    - Paga apenas pelos recursos usados (CPU e memória, por segundo)
+  - Integra com ECS e EKS
+    - Pode usar com ECS (mais simples) ou EKS (Kubernetes)
+    
+--- 
+
+### Amazon Kinesis
+
+É um serviço da AWS para coletar, processar e analisar grandes volumes de dados em tempo real — como logs, cliques, dados de sensores, streams de vídeo, etc.
+
+O Kinesis é como uma esteira rolante de dados: ele capta dados continuamente de várias fontes e permite processá-los quase instantaneamente.
+
+#### Principais componentes do Kinesis
+
+| Serviço | Função |
+|:------:|:------:|
+| Kinesis Data Streams | Capta e armazena fluxos de dados em tempo real para processar depois |
+| Kinesis Data Firehose | Capta dados e envia automaticamente para destinos como S3, Redshift, etc |
+| Kinesis Data Analytics | Permite usar SQL para consultar e processar dados em tempo real |
+| Kinesis Video Streams | Transmite, armazena e analisa fluxos de vídeo |
+
+--- 
+
+### Amazon SQS (Simple Queue Service)
+
+É um serviço da AWS que oferece filas de mensagens totalmente gerenciadas, permitindo que sistemas distribuídos se comuniquem de forma assíncrona e desacoplada.
+
+O SQS é como uma "fila de correio" digital: uma aplicação envia mensagens para a fila e outra aplicação pega essas mensagens quando puder processá-las — cada uma no seu tempo.
+
+#### Vantagens
+
+  - Desacopla sistemas
+    - o produtor (quem envia a mensagem) e o consumidor (quem lê) funcionam de forma independente.
+  - Alta escalabilidade
+    - processa milhões de mensagens por segundo.
+  - Tolerância a falhas
+    - mensagens ficam na fila mesmo se o consumidor cair.
+  - Controle de mensagens
+    - define tempo de retenção, tentativas, e ordem de leitura.
+
+#### Tipos de filas no SQS
+
+| Tipo | Características |
+|:------:|:------:|
+| Standard Queue | Alta performance, entrega pelo menos uma vez, ordem não garantida |
+| FIFO Queue | Entrega exatamente uma vez, ordem garantida (First-In-First-Out) |
+
+--- 
+
+### Amazon SNS (Simple Notification Service)
+
+É um serviço da AWS para envio de notificações em tempo real, baseado no modelo pub/sub (publicador/assinante). Ele permite que uma aplicação envie mensagens para múltiplos destinos ao mesmo tempo, como e-mails, SMS, outras aplicações ou serviços AWS.
+
+O SNS é como um "alto-falante": você publica uma mensagem em um tópico, e todos os assinantes recebem ao mesmo tempo.
+
+#### Vantagens
+
+  - Enviar alertas por e-mail ou SMS
+  - Disparar notificações push para aplicativos móveis
+  - Informar outros serviços AWS (como SQS, Lambda)
+  - Criar fluxos de eventos assíncronos
+
+#### SNS vs SQS
+
+| Característica | SNS (Pub/Sub) | SQS (Fila) |
+|:------:|:------:|:------:|
+| Tipo de entrega | Envia para múltiplos destinos ao mesmo tempo | Armazena mensagem até que seja consumida |
+| Ordem de consumo | Todos recebem ao mesmo tempo | Um consumidor por vez |
+| Tempo de retenção | Não guarda mensagens | Armazena por até 14 dias |
+| Usado para | Notificações, broadcast | Processamento assíncrono, filas de tarefas |
+
+--- 
+
+### AWS Batch
+
+É um serviço da AWS que permite executar tarefas de computação em lote (batch jobs) de forma totalmente gerenciada, escalável e eficiente, sem precisar se preocupar com servidores ou filas manuais.
+
+O AWS Batch roda tarefas de processamento intensivo (como cálculos, conversões, análises) em segundo plano, em qualquer escala e de forma automática.
+
+#### Vantagens
+
+  - Gerenciamento automático
+    - Ele provisiona e escala os recursos (instâncias EC2, Fargate, etc.)
+  - Execução de jobs em lote
+    - Ideal para tarefas como renderização, análise de dados, machine learning
+  - Job queues
+    - Você pode organizar e priorizar tarefas por fila
+  - Integração com Docker
+    - Você empacota seu código em containers e o AWS Batch executa
+
+--- 
+
+### Amazon Lightsail
+
+É um serviço da AWS voltado para quem quer implementar aplicações de forma simples e rápida, sem precisar lidar com toda a complexidade dos serviços mais avançados da AWS como EC2, VPC, etc.
+
+O Lightsail é como uma versão mais fácil e amigável do EC2, ideal para sites simples, blogs, pequenos sistemas e testes rápidos.
+
+#### Vantagens
+
+  - Instâncias prontas
+    - Crie um servidor com WordPress, LAMP, Node.js, etc. com 1 clique
+  - Preço fixo
+    - Você escolhe um plano com valor mensal previsível
+  - Endereço IP público
+    - Já vem com IP fixo, DNS, e pode configurar domínios facilmente
+  - Armazenamento SSD
+    - Inclui disco rápido com backup integrado
+  - Rede simplificada
+    - Inclui firewall, DNS e balanceador de carga fáceis de configurar
+  - Console intuitivo
+    - Painel visual muito mais simples que o do EC2
+
+#### Quando usar
+
+  - Blogs (WordPress, Ghost, etc.)
+  - Sites institucionais
+  - Pequenos e-commerces
+  - Aplicações web pessoais ou de teste
+  - Ambientes de desenvolvimento
+
+--- 
+
+### AWS Lambda
+
+É um serviço da AWS que permite executar funções (código) sem precisar gerenciar servidores — por isso é chamado de computação serverless.
+
+Com o Lambda, você sobe seu código, define quando ele deve rodar, e a AWS cuida de toda a infraestrutura por trás. Você só paga pelo tempo de execução.
+
+#### Vantagens
+
+  - Totalmente gerenciado
+    - Você não precisa criar ou escalar servidores
+  - Event-driven
+    - Responde a eventos de outros serviços AWS (S3, DynamoDB, SNS, etc.)
+  - Escala automática
+    - Roda 1 vez ou milhões, sem precisar configurar
+  - Custo por uso
+    - Você paga só pelos milissegundos que o código roda
+  - Seguro por padrão
+    - Integra com IAM e roles para permissões seguras
+
+#### Lambda vs EC2
+
+| Característica | Lambda | EC2 |
+|:------:|:------:|:------:|
+
+| Infraestrutura | Oculta (serverless) | Você gerencia a máquina virtual |
+| Escalabilidade | Automática e instantânea | Manual ou via Auto Scaling |
+| Ideal para | Tarefas rápidas e event-driven | Aplicações complexas e contínuas |
+| Preço | Por execução e tempo de uso | Por hora de instância ativa |
+
+---
+
+### AWS Control Tower
+
+É um serviço da AWS que facilita a criação, organização e governança de múltiplas contas AWS dentro de um ambiente corporativo — ou seja, ele ajuda você a criar e manter um ambiente multi-conta seguro, padronizado e escalável.
+
+O Control Tower é como um “gerente de nuvem corporativa”, que configura boas práticas automaticamente, como segurança, compliance e contas separadas, desde o início.
+
+#### O que o Control Tower faz
+
+| Função | Descrição |
+|:------:|:------:|
+| Landing zone automática | Cria uma base com segurança, redes e contas organizadas |
+| Guardrails | Regras pré-definidas de segurança e compliance (ex: impedir root access) |
+| Automação de contas |	Criação automática de contas novas com políticas aplicadas |
+| Organização via AWS Organizations | Integra com o serviço que gerencia múltiplas contas (AWS Organizations) |
+| Auditoria e visibilidade | Ajuda a acompanhar o uso e conformidade de cada conta |
+
+---
+
+### AWS RAM (Resource Access Manager)
+
+É um serviço da AWS que permite compartilhar recursos entre contas da AWS de forma simples e segura. Ele ajuda a facilitar a colaboração e o uso compartilhado de recursos, sem a necessidade de duplicação ou migração de recursos entre contas.
+
+O AWS RAM permite que você compartilhe recursos, como VPCs, sub-redes, imagens, etc., de uma conta AWS para outras contas ou organizações, sem precisar replicar esses recursos.
+
+#### Vantagens
+
+  - Compartilhamento de recursos
+    - Permite compartilhar recursos como VPC, sub-redes, snapshots e mais
+  - Controle de acesso
+    - Você pode definir quais contas ou organizações podem acessar os recursos
+  - Segurança
+    -	Controle fino de permissões com AWS IAM para governança e controle
+  - Multi-contas e organizações
+    - Pode compartilhar recursos entre contas e organizações AWS diferentes
+
+---
+
+### AWS Trusted Advisor
+
+É um serviço da AWS que oferece recomendações sobre como melhorar a eficiência, segurança e reduzir custos da sua infraestrutura na AWS. Ele age como um consultor automatizado, analisando as configurações e práticas de uso da sua conta para fornecer sugestões práticas e melhores práticas.
+
+O Trusted Advisor verifica a sua infraestrutura AWS e fornece alertas e recomendações personalizadas para ajudá-lo a otimizar seus recursos e garantir que você está seguindo as melhores práticas da AWS.
+
+#### Principais funcionalidades
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Recomendações de custo | Sugestões sobre como reduzir custos (ex: desligar instâncias ociosas) |
+| Segurança | Alertas sobre configurações de segurança inadequadas (ex: permissões excessivas) |
+| Performance | Sugestões para melhorar a performance (ex: usar instâncias mais adequadas) |
+| Práticas recomendadas | Dicas gerais para manter sua infraestrutura eficiente e segura |
+| Limitações e quotas | Alerta sobre limites de recursos que você pode estar alcançando |
+
+---
+
+### AWS Service Catalog
+
+É um serviço que permite que empresas criem, organizem e disponibilizem catálogos de serviços/aplicações aprovados — como templates de infraestrutura, stacks do CloudFormation, softwares, AMIs, VMs e containers — para que os times usem de forma padronizada, segura e controlada.
+
+#### Vantagens
+
+  - Controle de acesso
+    - Define quem pode lançar e gerenciar produtos
+  - Governo e compliance
+    - Garante padrões de segurança e tags obrigatórias
+  - Reuso de infraestrutura
+    - Evita retrabalho e erros manuais
+  - Auditoria e visibilidade
+    - Integração com CloudTrail e AWS Config
+  - Compatível com múltiplas contas
+    - Ideal para ambientes multi-conta com AWS Organizations
 
 ---
 
