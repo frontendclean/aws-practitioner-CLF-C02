@@ -138,6 +138,21 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS IoT Core](#aws-iot-core)
 - [AWS Step Functions](#aws-step-functions)
 - [AWS AppFlow](#aws-appflow)
+- [AWS Disaster Recovery Strategy (Estratégia de Recuperação de Desastres da AWS)](#aws-disaster-recovery-strategy-estratégia-de-recuperação-de-desastres-da-aws)
+- [AWS WorkSpaces](#aws-workspaces)
+- [AWS WAF (Web Application Firewall)](#aws-waf-web-application-firewall)
+- [Bring Your Own License (BYOL), ou Traga Sua Própria Licença](#bring-your-own-license-byol-ou-traga-sua-própria-licença)
+- [AWS CloudFormation](#aws-cloudformation)
+- [AWS Artifact](#aws-artifact)
+- [Amazon Inspector](#amazon-inspector)
+- [AWS Security Hub](#aws-security-hub)
+- [Amazon GuardDuty](#amazon-guardduty)
+- [AWS Shield](#aws-shield)
+- [AWS Config](#aws-config)
+- [AWS Knowledge Center](#aws-knowledge-center)
+- [AWS Database Migration Service (DMS)](#aws-database-migration-service-dms)
+- [AWS Schema Conversion Tool (SCT)](#aws-schema-conversion-tool-sct)
+- [Amazon EventBridge](#amazon-eventbridge)
 
 ---
 
@@ -2490,6 +2505,434 @@ O AWS AppFlow facilita a integração de dados entre plataformas como Salesforce
 | Integração com diversos SaaS | Conecta com aplicações populares como Salesforce, SAP, ServiceNow, etc. |
 | Facilidade de uso (sem código) | Interface gráfica para configurar fluxos de dados |
 | Agendamento e automação | Defina quando e com que frequência os fluxos de dados serão executados |
+
+---
+
+### AWS Disaster Recovery Strategy (Estratégia de Recuperação de Desastres da AWS)
+
+Estratégia de Recuperação envolve um conjunto de práticas, processos e serviços da AWS para garantir que os dados e as aplicações possam ser recuperados rapidamente e com mínima perda após eventos inesperados, como falhas de hardware, desastres naturais ou ataques cibernéticos.
+
+A AWS oferece diversos níveis de estratégias de recuperação, que vão desde soluções mais simples e menos dispendiosas até estratégias mais complexas e robustas. A escolha da estratégia depende do nível de criticidade da aplicação, do tempo de inatividade aceitável (RTO - Recovery Time Objective) e da quantidade de dados aceitável de perda (RPO - Recovery Point Objective).
+
+Uma estratégia de recuperação de desastres na AWS utiliza serviços de backup, replicação e recuperação para garantir que a infraestrutura, dados e aplicações possam ser rapidamente restaurados após uma falha ou desastre.
+
+#### Estratégias de Recuperação de Desastres da AWS
+
+A AWS define 4 tipos principais de estratégia para recuperação de desastres, com base no custo e na complexidade da implementação:
+
+  - Backup e Restore (Backup e Recuperação):
+    - Como funciona: Os dados são copiados periodicamente para um armazenamento seguro (como o Amazon S3 ou Amazon Glacier) e, no caso de um desastre, você restaura a partir desse backup.
+    - Custo: Baixo custo, pois depende de backups periódicos.
+    - RTO/RPO: O maior RTO e RPO entre as opções.
+  - Pilot Light:
+    - Como funciona: A infraestrutura crítica é mantida em execução em baixa capacidade em uma região de recuperação. Quando ocorre um desastre, a infraestrutura é aumentada para suportar a carga total.
+    - Custo: Baixo custo de operação, pois a maioria dos recursos são mantidos em estado ocioso.
+    - RTO/RPO: RTO e RPO mais rápidos que o modelo de Backup e Restore.
+  - Warm Standby:
+    - Como funciona: Mantém uma infraestrutura parcialmente provisionada em uma região secundária. Em caso de falha, a infraestrutura é escalada rapidamente para retomar a operação.
+    - Custo: Maior custo do que o modelo Pilot Light, pois envolve manter uma parte dos recursos ativos.
+    - RTO/RPO: RTO e RPO rápidos, mas não tão rápidos quanto o modelo Hot Standby.
+  - Hot Standby (Hot Standby/Active-Active):
+    - Como funciona: Mantém infraestruturas totalmente provisionadas e em funcionamento em duas regiões (primária e secundária). Em caso de falha, o tráfego é redirecionado instantaneamente para a região de recuperação.
+    - Custo: Alto custo, pois todos os recursos são mantidos ativos.
+    - RTO/RPO: O RTO e o RPO são muito baixos (praticamente instantâneos).
+
+#### Vantagens
+
+  - Redução do tempo de inatividade: Estratégias como Hot Standby oferecem quase nenhuma interrupção.
+  - Custo-benefício: A AWS permite escolher uma estratégia que se adapte ao orçamento e à criticidade do sistema.
+  - Escalabilidade: A recuperação de desastres pode ser feita de forma escalável e sem a necessidade de infraestrutura física.
+  - Facilidade de gerenciamento: A AWS oferece ferramentas e automação para simplificar a recuperação.
+
+---
+
+### AWS WorkSpaces 
+
+É um serviço gerenciado da Amazon que permite criar escritórios virtuais (desktops na nuvem) para seus usuários, acessíveis de qualquer lugar, usando dispositivos como PCs, tablets, navegadores ou thin clients.
+
+O AWS WorkSpaces fornece desktops baseados na nuvem, seguros e escaláveis, com Windows ou Linux, permitindo que empresas ofereçam acesso remoto aos seus funcionários sem a necessidade de infraestrutura física de TI.
+
+#### Características principais
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Desktop como serviço (DaaS) | Substitui PCs físicos por desktops virtuais gerenciados pela AWS |
+| Segurança integrada | Armazena dados na AWS, não no dispositivo local, e integra com IAM |
+| Custo sob demanda | Paga por hora ou por mês, de acordo com o uso |
+| Customização | Escolha sistema operacional, quantidade de CPU, RAM e armazenamento |
+| Autoescalável | Criação e destruição automática de WorkSpaces conforme necessário |
+| Integração com AD | Integra com Active Directory local ou na AWS |
+
+#### Vantagens
+
+  - Rápida implantação: Crie desktops virtuais em minutos.
+  - Alta segurança: Dados não ficam armazenados localmente.
+  - Flexível e escalável: Crie quantos WorkSpaces precisar e ajuste o tamanho com facilidade.
+  - Sem necessidade de manutenção de hardware físico.
+
+---
+
+### AWS WAF (Web Application Firewall) 
+
+É um serviço de firewall da AWS que protege aplicações web contra ameaças comuns da internet, como injeções SQL, scripts maliciosos (XSS), bots, ataques DDoS de camada 7, entre outros.
+
+O AWS WAF permite criar regras personalizadas para filtrar, bloquear ou permitir o tráfego para suas aplicações web, protegendo-as de ataques e acessos indesejados.
+
+#### Principais funcionalidades
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Regras personalizadas | Cria regras para bloquear ou permitir requisições com base em IP, headers, URI, etc. |
+| Managed Rules da AWS | Conjuntos prontos de regras para proteção contra ameaças conhecidas (mantidas pela AWS ou parceiros) |
+| Proteção contra bots | Detecta e bloqueia bots maliciosos automaticamente |
+| Taxa de requisição (rate-based) | Bloqueia IPs que fazem muitas requisições em pouco tempo (rate limiting) |
+| Geo blocking | Bloqueia ou permite acesso por localização geográfica |
+| Integração com CloudFront, ALB e API Gateway | Funciona com serviços que expõem suas aplicações à web |
+
+#### Vantagens
+
+  - Segurança personalizável: Crie políticas de segurança adaptadas à sua aplicação.
+  - Escalabilidade automática: Protege independentemente do volume de tráfego.
+  - Baixa latência: Não impacta significativamente a performance da aplicação.
+  - Relatórios e visibilidade: Integra com Amazon CloudWatch para monitoramento.
+
+---
+
+### Bring Your Own License (BYOL), ou Traga Sua Própria Licença
+
+É um modelo de licenciamento que permite que você use licenças de software que já possui (de fornecedores como Microsoft, Oracle, etc.) na nuvem da AWS, sem precisar pagar novamente por uma nova licença.
+
+O BYOL permite que você migre workloads para a AWS usando as licenças existentes, economizando custos e aproveitando os contratos já adquiridos com fornecedores.
+
+#### Como funciona
+
+  - Você já tem uma licença válida (por exemplo, do Windows Server ou do SQL Server).
+  - Em vez de pagar por uma licença incluída na instância EC2 (modelo License Included), você usa a sua própria.
+  - A AWS fornece opções específicas (como instâncias dedicadas ou hosts dedicados) que são compatíveis com BYOL.
+  - Em alguns casos, você precisa informar à AWS que está usando o modelo BYOL para manter conformidade de uso.
+
+#### Vantagens
+
+| Vantagem | Descrição |
+|:------:|:------:|
+| Redução de custos | Evita pagar duas vezes pela mesma licença |
+| Aproveitamento de contratos existentes | Usa acordos de licenciamento corporativo já firmados |
+| Flexibilidade | Facilita a migração de workloads on-premises para a nuvem |
+| Conformidade | Mantém licenças de forma legal e controlada |
+
+---
+
+### AWS CloudFormation 
+
+É um serviço da AWS que permite criar, gerenciar e provisionar infraestrutura na nuvem usando código. Ele usa arquivos de template (em YAML ou JSON) para definir e provisionar recursos da AWS de forma automatizada e reprodutível.
+
+O CloudFormation é a ferramenta de Infraestrutura como Código (IaC) da AWS. Com ele, você pode descrever toda a infraestrutura em arquivos de texto e a AWS monta tudo pra você automaticamente.
+
+#### O que você pode fazer com CloudFormation
+
+  - Criar instâncias EC2, VPCs, S3, RDS, IAM roles, etc.
+  - Automatizar criação de ambientes de desenvolvimento, teste ou produção.
+  - Gerenciar atualizações e rollback de recursos com segurança.
+  - Reutilizar templates padronizados em múltiplas contas e regiões.
+
+#### Vantagens
+
+| Vantagem | Descrição |
+|:------:|:------:|
+| Automação completa | Sem necessidade de clicar no console: tudo por código |
+| Consistência | Evita erros manuais e garante ambientes idênticos |
+| Controle de versão | Templates versionáveis via Git ou qualquer controle de código |
+| Rollback automático | Se algo der errado, ele desfaz as mudanças automaticamente |
+| Integração com outros serviços | Pode ser usado junto com CI/CD, Lambda, CodePipeline etc. |
+
+---
+
+### AWS Artifact 
+
+É um serviço da AWS que fornece acesso sob demanda a relatórios de conformidade, certificações e acordos legais relacionados à segurança e conformidade dos serviços da AWS.
+
+O AWS Artifact é como a biblioteca de documentos de compliance da AWS — onde você encontra auditorias, certificações e termos legais para fins regulatórios, jurídicos e de segurança.
+
+#### O que o AWS Artifact oferece
+
+| Funcionalidade | Descrição |
+|:------:|:------:|
+| Artifact Reports | Acesso a relatórios de auditorias da AWS como SOC 1, SOC 2, ISO 27001, etc. |
+| Artifact Agreements | Permite visualizar e aceitar acordos como o Business Associate Addendum (BAA) para HIPAA ou GDPR Addendum |
+| Documentos atualizados | Sempre com versões recentes das certificações da AWS |
+| Download simples e legalmente válido | Ideal para equipes de segurança, auditoria ou governança |
+
+#### Vantagens
+
+  - Acesso rápido a auditorias oficiais
+  - Gratuito e disponível em todas as contas AWS
+  - Facilita auditorias internas e externas
+  - Ajuda a documentar conformidade ao migrar para a nuvem
+
+---
+
+### Amazon Inspector 
+
+É um serviço da AWS que analisa automaticamente a segurança das suas instâncias EC2, containers (ECR) e workloads na nuvem, em busca de vulnerabilidades conhecidas e erros de configuração.
+
+O Amazon Inspector é uma ferramenta de verificação de vulnerabilidades automatizada, que ajuda você a manter sua infraestrutura segura, identificando falhas antes que sejam exploradas.
+
+#### O que ele faz
+
+| Função | Descrição |
+|:------:|:------:|
+| Scan automático e contínuo | Verifica continuamente instâncias EC2, imagens de containers (ECR), Lambda etc. |
+| Detecção de vulnerabilidades (CVEs) | Verifica se há falhas conhecidas no sistema operacional, pacotes e bibliotecas |
+| Avaliação de risco | Atribui pontuação de risco (baseado no CVSS) para cada vulnerabilidade encontrada |
+| Integração com AWS Organizations | Permite gerenciar contas múltiplas em grandes ambientes corporativos |
+| Relatórios de segurança centralizados | Visualização dos achados no console e integração com CloudWatch ou SNS |
+
+#### Vantagens
+
+  - Automação
+    - Não precisa escanear manualmente; o Inspector roda de forma contínua
+  - Precisão
+    - Usa banco de dados atualizado com CVEs conhecidos
+  - Integração com outros serviços
+    - Como ECR, Lambda, EC2, Security Hub, EventBridge
+  - Redução de riscos
+    - Identifica e ajuda a corrigir vulnerabilidades antes de um ataque
+
+---
+
+### AWS Security Hub 
+
+É um serviço que centraliza e organiza alertas de segurança e verificações de conformidade de diversos serviços da AWS e parceiros, tudo em um painel único.
+
+O Security Hub é a central de segurança da AWS, que coleta alertas de segurança de serviços como GuardDuty, Inspector, IAM Access Analyzer, e mostra tudo em um painel integrado, com recomendações de correção.
+
+#### O que ele faz
+
+| Função | Descrição |
+|:------:|:------:|
+| Agrega alertas (findings) | Coleta alertas de serviços como Amazon GuardDuty, Inspector, Macie etc. |
+| Verificações de conformidade | Executa checagens com base em padrões como CIS AWS Foundations ou AWS Foundational Security Best Practices |
+| Classificação de risco | Cada alerta recebe severidade (baixo, médio, alto, crítico) |
+| Ações automatizadas | Integra com EventBridge, Lambda ou Step Functions para correção automática |
+| Suporte a múltiplas contas | Pode coletar dados de segurança de várias contas AWS via AWS Organizations |
+
+#### Vantagens
+
+  - Visão centralizada
+    - Um único lugar para ver alertas de segurança e conformidade
+  - Redução de tempo de resposta
+    - Automatiza ações quando problemas são detectados
+  - Integração com parceiros
+    - Suporta ferramentas de terceiros como Splunk, CrowdStrike, etc.
+  - Melhoria contínua
+    - Ajuda a manter as melhores práticas de segurança na nuvem da AWS
+
+---
+
+### Amazon GuardDuty 
+
+É um serviço de detecção de ameaças da AWS que monitora continuamente sua conta e seus recursos em busca de atividades maliciosas ou comportamento suspeito.
+
+O GuardDuty funciona como um sistema de alarme inteligente de segurança para sua conta AWS. Ele analisa logs automaticamente para encontrar indícios de ataques, invasões ou uso indevido.
+
+#### O que ele analisa
+
+| Fonte de dados | O que é analisado |
+|:------:|:------:|
+| CloudTrail | Ações feitas na conta, como criação de recursos ou alterações IAM |
+| VPC Flow Logs | Tráfego de rede nas suas VPCs |
+| DNS logs | Requisições DNS feitas pelos seus recursos |
+| EKS audit logs | Logs de auditoria de clusters Kubernetes (EKS) |
+
+#### Vantagens
+
+  - Monitoramento contínuo
+    - Sem necessidade de instalar agentes ou configurar regras complexas
+  - Detecção baseada em ML
+    - Usa machine learning e inteligência de ameaças para detectar riscos reais
+  - Sem impacto na performance
+    - Roda de forma independente dos seus recursos
+  - Fácil integração
+    - Integra com Security Hub, EventBridge, Lambda e sistemas de terceiros
+
+---
+
+### AWS Shield 
+
+É um serviço gerenciado da AWS que protege aplicações contra ataques DDoS (Distributed Denial of Service), ou seja, ataques que tentam derrubar seu site ou sistema sobrecarregando-o com tráfego malicioso.
+
+O AWS Shield protege seus recursos na AWS contra ataques DDoS, ajudando a manter seus serviços disponíveis e funcionando, mesmo sob ataque.
+
+#### Tipos de AWS Shield
+
+| Tipo | O que oferece |
+|:------:|:------:|
+| Shield Standard | Proteção automática gratuita contra ataques DDoS comuns para todos os clientes AWS |
+| Shield Advanced | Proteção premium com mitigação avançada, suporte 24/7, e relatórios detalhados |
+
+#### Shield Standard (grátis)
+
+  - Ativado automaticamente para CloudFront, Route 53, Elastic Load Balancer (ELB) e Global Accelerator
+  - Protege contra ataques de camada de rede mais comuns (ex: SYN flood, UDP flood)
+  - Sem necessidade de configuração
+
+#### Shield Advanced (pago)
+
+Inclui tudo do Standard, mais:
+
+| Funcionalidade | Benefício |
+|:------:|:------:|
+| Detecção e mitigação avançada | Resposta mais rápida e inteligente contra ataques sofisticados |
+| Proteção contra custo de escala | Reembolso dos custos gerados por auto scaling em caso de ataque DDoS |
+| Equipes de resposta da AWS (DDoS Response Team - DRT) | Suporte direto da AWS durante ataques |
+| Relatórios e métricas detalhadas | Integra com CloudWatch e AWS Firewall Manager |
+| Proteção para aplicações específicas | Pode proteger EC2, ELB, Elastic IPs, CloudFront, Route 53 etc. |
+
+---
+
+### AWS Config 
+
+É um serviço que monitora, registra e avalia a configuração dos recursos da AWS ao longo do tempo. Ele permite que você veja quem mudou o quê, quando, e se aquilo está em conformidade com regras definidas.
+
+O AWS Config funciona como uma caixa-preta de auditoria e conformidade para seus recursos na nuvem. Ele registra mudanças de configuração, verifica se estão de acordo com suas políticas de segurança ou governança, e ajuda em auditorias.
+
+#### O que ele faz
+
+| Função | Descrição |
+|:------:|:------:|
+| Rastreamento de mudanças | Detecta alterações em recursos da AWS (ex: alguém abriu um bucket S3) |
+| Histórico completo | Armazena a linha do tempo de configurações de cada recurso |
+| Avaliação de conformidade | Verifica se os recursos estão seguindo regras definidas |
+| Integração com regras customizadas | Permite criar regras com Lambda ou usar regras gerenciadas pela AWS |
+
+#### Vantagens
+
+  - Visibilidade total
+    - Entenda como seus recursos mudam com o tempo
+  - Conformidade contínua
+    - Detecta violações automaticamente
+  - Auditoria simplificada
+    - Histórico de quem mudou o quê, ideal para revisões de segurança
+  - Automatização com Lambda
+    - Pode reagir automaticamente a violações de regras
+
+---
+
+### AWS Knowledge Center 
+
+É um repositório oficial de perguntas frequentes (FAQs) e artigos de ajuda mantido pela própria AWS. Ele serve como uma base de conhecimento técnica para tirar dúvidas comuns sobre serviços da nuvem AWS.
+
+O AWS Knowledge Center é como um "pergunte aqui" oficial da AWS: você encontra respostas rápidas e práticas para problemas ou dúvidas comuns sobre os serviços da AWS.
+
+#### O que você encontra lá
+
+| Conteúdo | Descrição |
+|:------:|:------:|
+| Respostas para dúvidas comuns | "Como resetar senha do IAM?", "Por que meu EC2 não inicia?" |
+| Guias de solução de problemas | Passo a passo para resolver erros específicos |
+| Explicações técnicas | Diferença entre instâncias, criptografia, billing, etc. |
+| Links para tutoriais e docs | Referência para documentação oficial e vídeos da AWS |
+
+#### Vantagens
+
+  - Respostas rápidas
+    - Curto, direto ao ponto, ideal para problemas do dia a dia
+  - Fonte confiável
+    - Criado e mantido pela equipe da própria AWS
+  - Fácil de buscar
+    - Busca por palavra-chave ou por serviço
+  - Complementa o suporte
+    - Pode te ajudar antes mesmo de abrir um chamado na AWS Support
+
+---
+
+### AWS Database Migration Service (DMS) 
+
+É um serviço gerenciado da AWS que facilita a migração de bancos de dados para a nuvem da AWS de forma rápida, segura e sem interrupção. Ele permite que você migre dados entre bancos de dados diferentes, sejam eles em um ambiente local, na AWS ou entre diferentes serviços de banco de dados da AWS.
+
+O AWS DMS ajuda a migrar dados de forma simples e eficiente, com suporte a diferentes tipos de bancos de dados, como relacionais, NoSQL e data warehouses, sem a necessidade de parar suas aplicações durante o processo.
+
+#### Como funciona
+
+  - Fonte e Destino
+    - Você define o banco de dados de origem (pode ser local ou na AWS) e o banco de dados de destino (geralmente um serviço AWS, como RDS, DynamoDB ou Redshift).
+  - Configuração de migração
+    - O DMS configura a migração de dados, mapeando as tabelas, registros e relacionamentos.
+  - Execução da migração
+    - O serviço copia os dados em tempo real, garantindo que as mudanças feitas na origem durante a migração sejam refletidas no destino. Esse processo pode ser feito de forma offline (apenas uma vez) ou em tempo real (com a replicação contínua).
+  - Monitoramento e ajuste
+    - Durante a migração, você pode acompanhar o progresso e garantir que tudo esteja ocorrendo corretamente.
+
+#### Vantagens
+
+  - Migrations sem downtime
+    - A migração pode ser feita sem interromper as operações de banco de dados
+  - Suporte a diferentes tipos de banco
+    - Transfere dados entre diferentes tecnologias de banco de dados
+  - Fácil de configurar
+    - Configuração simples via console ou API da AWS
+  - Replicação contínua
+    - Permite replicação contínua de dados para sincronização em tempo real
+
+---
+
+### AWS Schema Conversion Tool (SCT) 
+
+É uma ferramenta que ajuda na conversão de esquemas de banco de dados quando você migra entre diferentes tipos de banco de dados. A AWS SCT facilita a transição de bancos de dados de diferentes plataformas (por exemplo, de um banco de dados relacional como o Oracle para o Amazon Aurora ou Amazon RDS), convertendo o esquema (estruturas de tabelas, índices, procedures, etc.) e, em alguns casos, até mesmo o código-fonte (como funções ou triggers).
+
+O AWS SCT converte o esquema de um banco de dados de uma tecnologia para outra, facilitando a migração de dados e mantendo a compatibilidade entre os dois sistemas.
+
+#### Como funciona
+
+  - Análise do banco de dados de origem
+    - A ferramenta faz uma análise do esquema do banco de dados de origem e identifica os objetos de banco de dados como tabelas, índices, triggers, procedures, entre outros.
+  - Conversão do esquema
+    - O AWS SCT converte o esquema do banco de dados de origem para um banco de dados de destino (por exemplo, de Oracle para Amazon Aurora ou RDS).
+  - Ajuste de código
+    - Em alguns casos, pode ser necessário ajustar ou reescrever procedures, funções e triggers que não sejam compatíveis diretamente com o banco de dados de destino. O AWS SCT ajuda nesse processo, indicando as mudanças necessárias.
+  - Exportação do esquema convertido
+    - Depois da conversão, o esquema pode ser exportado para o banco de dados de destino, para que a migração de dados ocorra de maneira mais fluida.
+
+#### Vantagens
+
+  - Facilidade na migração
+    - A AWS SCT facilita a transição entre diferentes tecnologias de banco de dados
+  - Compatibilidade com código
+    - Ajuda a adaptar funções, procedures e triggers entre plataformas de banco de dados
+  - Reduz a complexidade
+    - Automatiza a conversão do esquema, reduzindo a necessidade de refazer a estrutura manualmente
+  - Suporte a diferentes fontes
+    - Suporta bancos de dados amplamente utilizados como Oracle, SQL Server, MySQL e PostgreSQL
+
+---
+
+### Amazon EventBridge 
+
+É um serviço gerenciado da AWS que facilita a criação de arquiteturas de eventos em tempo real. Ele permite que você conecte aplicações diferentes, sistemas ou serviços de uma forma desacoplada, reagindo automaticamente a eventos e realizando ações com base nesses eventos.
+
+Ele é uma evolução do Amazon CloudWatch Events e fornece uma maneira mais poderosa e flexível de integrar e orquestrar sistemas e serviços na AWS ou fora dela, com suporte a eventos de aplicativos personalizados e eventos de terceiros.
+
+O Amazon EventBridge permite que você construa aplicações reativas, em que eventos de diferentes fontes (como AWS, SaaS ou aplicativos personalizados) disparam ações em sistemas conectados. Ele ajuda a desacoplar os componentes de uma aplicação, tornando-a mais escalável e flexível.
+
+#### Como funciona
+
+  - Fonte de Evento
+    - O EventBridge recebe eventos de diversas fontes (por exemplo, serviços AWS, aplicações personalizadas ou aplicativos SaaS).
+  - Regras de Evento
+    - Você cria regras para filtrar quais eventos de fontes específicas devem acionar quais ações.
+  - Destinos
+    - Quando um evento corresponde a uma regra, ele pode acionar destinos, como funções AWS Lambda, Amazon SNS, Amazon SQS, Step Functions, entre outros.
+
+#### Vantagens
+
+  - Desacoplamento de componentes
+    - EventBridge permite que os componentes da aplicação sejam independentes, o que facilita escalabilidade e manutenção.
+  - Suporte a múltiplas fontes de eventos
+    - Pode integrar eventos de AWS, SaaS, e aplicações personalizadas em uma única plataforma.
+  - Escalabilidade automática
+    - O EventBridge lida com eventos de qualquer volume, permitindo que sua aplicação escale conforme necessário.
+  - Facilidade de orquestração
+    - Permite orquestrar fluxos de trabalho automatizados e respostas a eventos sem gerenciar infraestrutura adicional.
 
 ---
 
