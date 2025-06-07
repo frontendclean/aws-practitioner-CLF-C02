@@ -153,6 +153,19 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS Database Migration Service (DMS)](#aws-database-migration-service-dms)
 - [AWS Schema Conversion Tool (SCT)](#aws-schema-conversion-tool-sct)
 - [Amazon EventBridge](#amazon-eventbridge)
+- [AWS Budgets](#aws-budgets)
+- [AWS Cost Explorer](#aws-cost-explorer)
+- [Amazon Athena](#amazon-athena)
+- [Amazon EMR (Elastic MapReduce)](#amazon-emr-elastic-mapreduce)
+- [AWS Elastic Beanstalk](#aws-elastic-beanstalk)
+- [AWS CloudHSM](#aws-cloudhsm)
+- [AWS Detective](#aws-detective)
+- [Amazon Macie](#amazon-macie)
+- [AWS Compute Optimizer](#aws-compute-optimizer)
+- [AWS Resource Explorer](#aws-resource-explorer)
+- [Amazon QuickSight](#amazon-quicksight)
+- [AWS Support](#aws-support)
+- [AWS Professional Services](#aws-professional-services)
 
 ---
 
@@ -2933,6 +2946,396 @@ O Amazon EventBridge permite que você construa aplicações reativas, em que ev
     - O EventBridge lida com eventos de qualquer volume, permitindo que sua aplicação escale conforme necessário.
   - Facilidade de orquestração
     - Permite orquestrar fluxos de trabalho automatizados e respostas a eventos sem gerenciar infraestrutura adicional.
+
+---
+
+### AWS Budgets 
+
+É um serviço da AWS que permite monitorar e controlar os custos e o uso dos recursos da AWS, ajudando a garantir que você não ultrapasse os limites orçamentários estabelecidos. Ele oferece uma maneira de definir orçamentos personalizados, receber alertas e tomar ações proativas quando os custos ou o uso se aproximam ou excedem os valores estabelecidos.
+
+O AWS Budgets permite que você monitore seus gastos na AWS de maneira proativa, definindo orçamentos para diferentes serviços ou recursos e recebendo alertas quando o gasto ou o uso estiver prestes a ultrapassar os limites definidos.
+
+#### Como funciona
+
+  - Criação de orçamentos
+    - Você define orçamentos personalizados para um ou mais serviços da AWS ou para o uso total da conta, podendo especificar valores mensais, trimestrais ou anuais.
+  - Definição de metas de uso e custos
+    - Ao criar um orçamento, você pode definir limites de custo e/ou de uso para diferentes serviços, como EC2, S3, RDS, etc.
+  - Monitoramento e alertas
+    - AWS Budgets monitora o uso e os custos em tempo real, comparando-os com os limites que você definiu. Quando os custos ou o uso se aproximam ou ultrapassam os valores configurados, você recebe alertas por e-mail ou SMS.
+  - Relatórios e visibilidade
+    - O serviço oferece relatórios detalhados sobre os custos e o uso para que você possa analisar o comportamento de consumo e tomar medidas corretivas.
+
+#### Vantagens
+
+  - Controle de custos
+    - Monitore seus gastos de forma contínua, evitando surpresas no final do mês.
+  - Alertas e notificações
+    - Receba alertas via e-mail ou SMS quando os custos ou uso se aproximam do orçamento.
+  - Personalização
+    - Defina orçamentos por serviço, categoria ou usuário, de acordo com suas necessidades.
+  - Visibilidade e relatórios
+    - Obtenha relatórios detalhados sobre gastos históricos, previsões e tendências de uso.
+
+---
+
+### AWS Cost Explorer 
+
+É uma ferramenta da AWS que permite visualizar, analisar e gerenciar os custos e o uso dos serviços da AWS ao longo do tempo. Ele fornece relatórios detalhados e gráficos interativos para ajudar a entender como os recursos estão sendo utilizados e onde estão ocorrendo os gastos. Isso facilita a identificação de padrões de custo, o que é crucial para otimizar os gastos na AWS.
+
+O AWS Cost Explorer ajuda a visualizar e analisar os custos da AWS de maneira interativa, permitindo que você monitore e otimize seus gastos, identifique tendências de consumo e tome decisões mais informadas sobre o uso de recursos.
+
+#### Funcionalidades principais
+
+  - Análise de custo e uso
+    - O Cost Explorer permite ver detalhes sobre o custo de cada serviço, como EC2, S3, RDS, entre outros. Você pode filtrar por tipo de serviço, conta, tags ou tempo.
+  - Relatórios interativos
+    - O Cost Explorer permite criar relatórios personalizados com base em suas necessidades. Você pode analisar custos em períodos diários, mensais ou até mesmo por hora.
+  - Gráficos e visualizações
+    - Os relatórios podem ser visualizados de forma gráfica, o que facilita a compreensão de tendências de gastos e o comportamento do consumo ao longo do tempo.
+  - Previsão de custos futuros
+    - Ele pode fornecer previsões baseadas em gastos passados, ajudando a antecipar custos para o próximo mês ou trimestre.
+  - Filtragem por tags
+    - Se você usa tags para identificar e categorizar seus recursos (por exemplo, por projeto, departamento ou equipe), pode filtrar e ver os custos associados a essas tags, permitindo um controle mais granular.
+  - Cost Anomaly Detection
+    - Detecta anomalias de custo de maneira proativa, notificando quando os custos de um serviço ou recurso estão fora do esperado.
+
+#### Vantagens
+
+  - Visualização detalhada
+    - Permite visualizar custos detalhados por serviço, região ou conta
+  - Otimização de custos
+    - Ajuda a identificar padrões e tendências para otimizar os gastos.
+  - Previsões de gastos
+    - Fornece previsões baseadas em custos históricos, ajudando no planejamento financeiro.
+  - Filtros e tags
+    - Possibilita a filtragem por tags, facilitando o gerenciamento de custos por projeto ou equipe.
+
+---
+
+### Amazon Athena 
+
+É um serviço de análise interativa de dados na AWS que permite consultar dados diretamente em Amazon S3 usando SQL padrão, sem a necessidade de mover ou carregar os dados para um banco de dados. É uma solução serverless (sem servidor), o que significa que você não precisa gerenciar infraestrutura ou se preocupar com provisionamento de recursos, e paga apenas pelas consultas realizada.
+
+Amazon Athena é um serviço que permite executar consultas SQL diretamente sobre dados armazenados no S3, sem a necessidade de configurar servidores ou bancos de dados. Ele é ideal para análise de grandes volumes de dados, especialmente dados não estruturados ou semiestruturados, como logs ou arquivos CSV.
+
+#### O que ele faz
+
+  - Consultas SQL sobre dados no S3
+    - Você pode consultar dados em formatos como CSV, JSON, Parquet, ORC, Avro, entre outros, armazenados no S3 diretamente com SQL.
+  - Serverless (sem servidor)
+    - O Athena não exige que você configure ou gerencie servidores, tornando-o uma solução serverless. Isso reduz a complexidade de manutenção.
+  - Escalabilidade automática
+    - O serviço escala automaticamente para lidar com grandes volumes de dados, sem a necessidade de configuração adicional.
+  - Integração com outras ferramentas AWS
+    - Athena se integra bem com AWS Glue para catalogação de dados e AWS QuickSight para visualização de resultados. Você também pode usar o AWS Lambda para automação e integração com outros serviços.
+  - Consulta de dados sem transformação
+    - Não é necessário mover ou transformar os dados antes da consulta, já que você pode consultar diretamente arquivos armazenados no S3.
+  - Suporte a formatos de dados otimizados
+    - Athena é compatível com formatos de dados otimizados para consultas rápidas, como Parquet e ORC, o que reduz o custo de consulta e melhora a performance.
+
+#### Vantagens
+
+  - Serverless
+    - Sem necessidade de gerenciamento de infraestrutura ou servidores.
+  - Consultas rápidas
+    - Execute consultas SQL rápidas em grandes volumes de dados.
+  - Custo sob demanda
+    - Paga-se apenas pelo volume de dados lido nas consultas, o que pode ser muito econômico.
+  - Facilidade de integração
+    - Integra-se com diversos serviços AWS como Glue, QuickSight, Lambda.
+  - Suporte a vários formatos de dados
+    - Suporta diversos formatos, incluindo CSV, JSON, Parquet, Avro, entre outros.
+
+---
+
+### Amazon EMR (Elastic MapReduce) 
+
+É um serviço da AWS que facilita o processamento de grandes volumes de dados usando frameworks de código aberto, como Apache Hadoop, Apache Spark, Apache Hive, HBase, entre outros. Ele permite que você crie e gerencie clusters para processar dados de maneira escalável e eficiente, sem a necessidade de gerenciar a infraestrutura subjacente.
+
+Amazon EMR é uma solução gerenciada para processamento de grandes volumes de dados usando frameworks como Hadoop e Spark na AWS, oferecendo escalabilidade e facilidade de uso, sem a necessidade de gerenciamento de infraestrutura.
+
+#### O que ele faz
+
+  - Processamento distribuído de dados
+    - O EMR usa frameworks como Hadoop e Spark para dividir grandes volumes de dados e processá-los de forma paralela, distribuída, o que melhora a performance e escalabilidade do processamento.
+  - Escalabilidade
+    - O Amazon EMR permite que você escalone automaticamente a capacidade de processamento (número de nós) conforme necessário, permitindo que você lide com grandes volumes de dados sem se preocupar com limitações de capacidade.
+  - Integração com outros serviços AWS
+    - O EMR se integra com serviços como Amazon S3 (para armazenar dados), Amazon RDS, Redshift, AWS Glue, e Amazon DynamoDB, o que facilita o fluxo de dados entre serviços da AWS e amplia as possibilidades de análise e processamento.
+  - Suporte a frameworks de Big Data
+    - EMR oferece suporte a frameworks populares como Hadoop, Spark, Hive, HBase, Presto, Flink, entre outros, permitindo que você utilize a melhor tecnologia para o seu caso de uso.
+  - Gerenciamento simplificado
+    - O serviço é gerenciado, o que significa que a AWS cuida da infraestrutura, como a provisão de servidores, manutenção, e configuração do cluster, facilitando a operação do seu processamento de dados.
+  - Economia de custos
+    - Você paga apenas pelos recursos que usa. Além disso, o EMR suporta o uso de instâncias spot, que podem reduzir significativamente os custos de execução, aproveitando a capacidade não utilizada da AWS.
+
+#### Vantagens
+
+  - Gerenciamento automatizado
+    - A AWS gerencia a infraestrutura e a configuração dos clusters EMR, permitindo que você foque no processamento de dados.
+  - Escalabilidade
+    - Você pode escalonar seus clusters de acordo com a demanda de processamento, adicionando ou removendo nós conforme necessário.
+  - Facilidade de integração
+    - O EMR se integra perfeitamente com diversos serviços AWS, como S3, DynamoDB, Redshift, entre outros.
+  - Suporte a múltiplos frameworks
+    - Suporta Hadoop, Spark, Hive, HBase e outros frameworks populares para processamento de grandes volumes de dados.
+  - Custo sob demanda
+    - Paga-se apenas pelos recursos utilizados, com a possibilidade de usar instâncias spot para reduzir custos.
+
+---
+
+### AWS Elastic Beanstalk 
+
+É um serviço PaaS (Plataform as a Service) da Amazon Web Services que permite implantar e gerenciar aplicações web de forma automática e simplificada, sem se preocupar com a infraestrutura subjacente (como servidores, balanceadores, escalabilidade ou monitoramento).
+
+Elastic Beanstalk é um serviço que implanta, gerencia e escala automaticamente sua aplicação web ou API, bastando você enviar seu código. Ele cuida da infraestrutura por trás disso (EC2, ELB, Auto Scaling, etc.).
+
+#### Tecnologias suportadas
+
+  - Plataformas
+    - Java, .NET, Node.js, PHP, Python, Ruby, Go, Docker.
+  - Servidores de aplicação
+    - Apache, Nginx, Passenger, IIS, Tomcat.
+  - Ambientes personalizados
+    - Também é possível usar Docker ou criar AMIs customizadas.
+
+#### Custo
+
+O Elastic Beanstalk não tem custo adicional. Você paga apenas pelos recursos que ele usa, como:
+
+  - EC2 (máquinas virtuais)
+  - RDS (banco de dados, se usado)
+  - ELB (load balancer)
+  - S3 (armazenamento)
+
+#### Vantagens
+
+| Vantagem | Descrição |
+|:------:|:------:|
+| Implantação rápida | Basta fazer upload do código — sem configurar servidores manualmente. |
+| Gerenciado pela AWS | A AWS cuida da infraestrutura, patches, balanceamento e escalonamento. |
+| Suporte a várias linguagens | Suporta múltiplas plataformas (Java, Node.js, Python, PHP, etc.). |
+| Escalabilidade automática | Escala horizontalmente de forma automática com base na demanda. |
+| Integração com outros serviços AWS | Integra facilmente com S3, RDS, CloudWatch, IAM, entre outros. |
+| Customização | É possível customizar o ambiente, se necessário (por ex., mudar o tipo de instância EC2). |
+
+---
+
+### AWS CloudHSM 
+
+É um serviço da Amazon Web Services que fornece módulos de segurança de hardware (HSMs) dedicados na nuvem para você gerar, armazenar e gerenciar chaves criptográficas com alto nível de segurança.
+
+Um HSM (Hardware Security Module) é um dispositivo físico projetado para:
+
+  - Gerar chaves criptográficas com segurança.
+  - Armazenar chaves protegidas contra acesso não autorizado.
+  - Realizar operações de criptografia e descriptografia com alto desempenho.
+
+#### O que ele faz
+
+| Recurso | Descrição |
+|:------:|:------:|
+| HSM dedicado | Você recebe um HSM físico dedicado a você (não é compartilhado). |
+| FIPS 140-2 nível 3 | Certificação de segurança reconhecida para uso governamental e financeiro. |
+| Controle total da chave | Só você tem acesso e controle sobre as chaves armazenadas. |
+| Alta disponibilidade | Pode ser implantado em múltiplas zonas para tolerância a falhas. |
+| Integração com apps | Integra com aplicações via APIs como PKCS#11, Java JCE e Microsoft CNG. |
+
+---
+
+### AWS Detective 
+
+É um serviço de análise e investigação de segurança que ajuda você a identificar, entender e resolver possíveis problemas ou incidentes de segurança em sua conta da AWS.
+
+O AWS Detective coleta automaticamente dados de atividades e redes da AWS e os analisa para ajudar na investigação de ameaças ou comportamentos suspeitos.
+
+#### O que ele faz
+
+  - Coleta de dados
+    - Ele coleta logs do AWS CloudTrail, VPC Flow Logs e Amazon GuardDuty.
+  - Análise automática
+    - Usa machine learning, análise estatística e gráficos para encontrar padrões e relações entre eventos.
+  - Visualizações interativas
+    - Apresenta gráficos, timelines e relacionamentos entre recursos para facilitar a investigação.
+  - Ajuda na resposta a incidentes
+    - Permite que equipes de segurança investiguem comprometimentos, acessos não autorizados ou anomalias.
+
+#### Vantagens
+
+| Vantagem | Descrição |
+|:------:|:------:|
+| Automatiza coleta de dados | Elimina trabalho manual com logs de várias fontes. |
+| Visualização clara | Exibe relações entre recursos e eventos de forma gráfica. |
+| Ajuda a detectar anomalias | Identifica comportamentos fora do padrão automaticamente. |
+| Integração com GuardDuty | Investiga facilmente alertas do GuardDuty com mais contexto. |
+
+---
+
+### Amazon Macie 
+
+É um serviço da AWS que usa inteligência artificial para descobrir, classificar e proteger dados sensíveis armazenados no Amazon S3, como:
+
+  - Números de CPF, cartão de crédito, RG
+  - Dados pessoais identificáveis (PII)
+  - Dados financeiros ou de saúde
+
+O Amazon Macie ajuda você a detectar e proteger dados confidenciais automaticamente dentro dos seus buckets do S3, usando machine learning.
+
+#### O que ele faz
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Descoberta de dados sensíveis | Verifica arquivos nos buckets S3 e identifica informações confidenciais. |
+| Classificação automática | Categoriza os dados encontrados com base no tipo (PII, financeiro etc.). |
+| Alertas de risco | Gera alertas se detectar dados sensíveis armazenados de forma insegura. |
+| Relatórios detalhados | Exibe onde estão os dados sensíveis e se há permissões públicas. |
+| Integração com Security Hub |	Envia achados automaticamente para consolidação com outros alertas. |
+
+#### Vantagens
+
+| Vantagem | Descrição |
+|:------:|:------:|
+| Automático e inteligente | Usa machine learning para aprender os padrões de dados sensíveis. |
+| Alta escalabilidade | Funciona com grandes volumes de dados no S3. |
+| Fácil de usar | Basta ativar e configurar um escaneamento. |
+| Foco em segurança | Ajuda a evitar violações de dados e falhas de conformidade. |
+
+---
+
+### AWS Compute Optimizer 
+
+É um serviço que usa machine learning para analisar o uso dos seus recursos de computação (como EC2, Lambda, EBS, ECS) e recomendar ajustes automáticos para melhorar performance e custo.
+
+O Compute Optimizer ajuda você a dimensionar corretamente seus recursos, evitando que você pague por instâncias subutilizadas ou tenha desempenho abaixo do ideal.
+
+#### O que ele faz
+
+| Recurso | Recomendações que pode fazer |
+|:------:|:------:|
+| EC2 Instances | Tipo e tamanho ideais (ex: trocar t3.medium por t3a.small). |
+| EBS Volumes | Tipo de volume mais eficiente. |
+| Lambda Functions | Melhorar a configuração de memória e tempo de execução. |
+| Auto Scaling Groups | Ajuste no tamanho mínimo/máximo e tipo de instância. |
+| ECS com Fargate | Recomenda CPU/memória mais apropriada. |
+
+#### Vantagens
+
+  - Economia de custos
+    - reduz desperdício de recursos.
+  - Melhoria de performance
+    - evita sobrecarga e lentidão.
+  - Recomendações inteligentes
+    - baseadas em dados reais de uso.
+  - Fácil de usar
+    - basta ativar e ele começa a gerar sugestões.
+
+---
+
+### AWS Resource Explorer 
+
+É um serviço da AWS que permite procurar e visualizar recursos da nuvem (como EC2, S3, Lambda, RDS, etc.) de forma rápida e centralizada, mesmo em múltiplas regiões.
+
+O AWS Resource Explorer é como um “buscador de recursos” da AWS — você digita o nome ou tipo de recurso e ele encontra onde está, sem precisar procurar manualmente.
+
+#### Principais funcionalidades
+
+| Função | O que faz |
+|:------:|:------:|
+| Busca rápida | Localiza recursos por nome, tipo, tag ou ID. |
+| Busca multi-região | Permite buscar recursos em todas as regiões da conta. |
+| Interface simples | A busca funciona como uma “barra de pesquisa” do console. |
+| Filtros por tipo/tags | Você pode refinar os resultados por tipo ou metadados. |
+
+#### Vantagens
+
+  - Ganha tempo
+    - sem precisar entrar em cada serviço e região manualmente.
+  - Visão unificada
+    - útil para ambientes com muitos recursos e contas.
+  - Gratuito
+    - sem custo extra para uso.
+
+---
+
+### Amazon QuickSight 
+
+É um serviço da AWS de Business Intelligence (BI) que permite criar painéis interativos, relatórios e visualizações de dados diretamente na nuvem.
+
+O QuickSight ajuda você a transformar dados brutos em gráficos e dashboards interativos, para que seja possível tomar decisões com base em dados, de forma rápida e escalável.
+
+#### Principais recursos
+
+| Recurso | O que faz |
+|:------:|:------:|
+| Dashboards interativos | Crie visualizações como gráficos, tabelas e mapas com poucos cliques. |
+| Análises automáticas (ML Insights) | Detecta padrões, anomalias e tendências nos dados. |
+| SPICE Engine | Motor interno de alta performance para análises em tempo real. |
+| Integração com dados da AWS | Conecta com S3, Redshift, RDS, Athena, entre outros. |
+| Compartilhamento fácil | Publique dashboards com controle de acesso (IAM ou ACL). |
+| BI embutido (Embedded BI) | Permite incorporar visualizações em seus próprios apps ou portais. |
+
+#### Vantagens
+
+  - Escalável e serverless
+    - sem precisar provisionar infraestrutura.
+  - Pagou pelo uso
+    - cobra por usuário e uso, com versão gratuita para testes.
+  - Segurança integrada com IAM, criptografia e logs.
+  - Fácil integração com fontes internas e externas de dados.
+
+---
+
+### AWS Support 
+
+É o serviço de suporte técnico e consultivo da Amazon Web Services, que oferece ajuda para resolver problemas técnicos, tirar dúvidas, planejar soluções e otimizar custos na nuvem AWS.
+
+#### O que ele oferece
+
+| Tipo de ajuda | Exemplos práticos |
+|:------:|:------:|
+| Suporte técnico | Resolver erro em instância EC2, problemas com S3, etc. |
+| Recomendações de arquitetura | Melhorar segurança, escalabilidade ou performance. |
+| Otimização de custos | Análise de uso e sugestões para economizar. |
+| Ferramentas automáticas | Trusted Advisor, Health Dashboard, etc. |
+
+#### Planos de suporte disponíveis
+
+| Plano | Ideal para... | O que inclui |
+|:------:|:------:|:------:|
+| Basic | Todos os clientes AWS (grátis) | Documentação, fóruns e suporte ao faturamento. |
+| Developer | Equipes em teste/desenvolvimento | Acesso a engenheiros via e-mail, horário comercial. |
+| Business | Produção em ambientes críticos | Suporte 24/7, prioridade alta, Trusted Advisor completo. |
+| Enterprise | Grandes empresas e missão crítica | Gerente Técnico Designado (TAM), tempo de resposta prioritário. |
+
+---
+
+### AWS Professional Services 
+
+É um time de consultores especializados da própria AWS que ajuda empresas a planejar, implementar e adotar soluções em nuvem de forma mais rápida e eficaz.
+
+É como contratar especialistas da própria AWS para te ajudar a executar projetos complexos ou estratégicos com boas práticas e segurança.
+
+#### O que eles fazem
+
+| Serviço | O que significa na prática |
+|:------:|:------:|
+| Consultoria técnica | Ajuda a arquitetar e migrar sistemas para a AWS. |
+| Transformação digital | Apoia mudanças culturais, processos e adoção de nuvem. |
+| Projetos complexos | Suporte em soluções como data lakes, machine learning, etc. |
+| Treinamento e capacitação | Trabalham junto com sua equipe para repassar conhecimento. |
+| Boas práticas e compliance | Garantem que tudo esteja seguro, escalável e bem projetado. |
+
+#### Quando usar o AWS Professional Services
+
+  - Vai migrar um sistema legado grande e crítico para a AWS.
+  - Precisa acelerar um projeto estratégico (como IA, Big Data).
+  - Quer garantir uma arquitetura segura, escalável e resiliente.
+  - Deseja criar uma cultura de DevOps e modernização.
+
+---
+
+
 
 ---
 
