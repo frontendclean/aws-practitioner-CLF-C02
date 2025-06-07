@@ -128,6 +128,16 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Amazon Kendra](#amazon-kendra)
 - [Amazon Textract](#amazon-textract)
 - [Amazon SageMaker](#amazon-sagemaker)
+- [AWS Well-Architected Framework](#aws-well-architected-framework)
+- [AWS CAF (Cloud Adoption Framework)](#aws-caf-cloud-adoption-framework)
+- [AWS Ecosystem (Ecossistema AWS)](#aws-ecosystem-ecossistema-aws)
+- [AWS Cognito](#aws-cognito)
+- [Amazon STS (Security Token Service)](#amazon-sts-security-token-service)
+- [AWS AppSync](#aws-appsync)
+- [AWS Amplify](#aws-amplify)
+- [AWS IoT Core](#aws-iot-core)
+- [AWS Step Functions](#aws-step-functions)
+- [AWS AppFlow](#aws-appflow)
 
 ---
 
@@ -2229,6 +2239,257 @@ Diferente de um OCR tradicional (que apenas lê o texto), o Textract compreende 
     - Ajuda a anotar dados de treinamento (como imagens, texto, etc.) com rotulagem automatizada e humana.
   - Monitoramento e ajuste contínuo
     - Acompanha a performance do modelo em produção e sugere re-treinamento se ele começar a ter baixa precisão.
+
+---
+
+### AWS Well-Architected Framework
+
+É um conjunto de boas práticas e diretrizes da AWS para ajudar empresas e desenvolvedores a projetar, construir e operar sistemas na nuvem que sejam seguros, eficientes, resilientes e otimizados em custo.
+
+Ele fornece um modelo estruturado com recomendações que ajudam a garantir que suas aplicações estejam:
+
+- Seguras
+- Confiáveis
+- Eficientes em performance
+- Otimizada em custos
+- Sustentáveis
+
+#### Vantagens
+
+  - Avaliar a arquitetura atual de suas aplicações na AWS.
+  - Identificar riscos e pontos de melhoria.
+  - Planejar mudanças para aumentar a qualidade e segurança dos sistemas.
+  - Guiar equipes de desenvolvimento e operações com práticas recomendadas.
+
+#### 6 pilares
+
+  - Excelência operacional (Operational Excellence)
+    - Melhores práticas para executar e monitorar sistemas, automatizar processos e melhorar continuamente.
+  - Segurança (Security)
+    - Proteção de dados, controle de acesso, monitoramento e resposta a incidentes.
+  - Confiabilidade (Reliability)
+    - Garantir que a aplicação continue funcionando bem mesmo com falhas, recuperação automática e escalabilidade.
+  - Eficiência de performance (Performance Efficiency)
+    - Uso eficiente dos recursos de computação para entregar a melhor performance.
+  - Otimização de custos (Cost Optimization)
+    - Gerenciar custos e evitar gastos desnecessários, usando os recursos de forma inteligente.
+  - Sustentabilidade (Sustainability)
+    - Minimizar o impacto ambiental da infraestrutura em nuvem, otimizando o uso de recursos.
+
+---
+
+### AWS CAF (Cloud Adoption Framework)
+
+É um guia da AWS que ajuda empresas a planejar e acelerar a adoção da nuvem de forma organizada e estratégica.
+
+Ele oferece um conjunto de melhores práticas, diretrizes e ferramentas para que organizações consigam:
+
+- Preparar pessoas, processos e tecnologia para migrar para a nuvem.
+- Gerenciar mudanças culturais e organizacionais.
+- Identificar lacunas e necessidades antes, durante e depois da migração.
+
+#### Vantagens
+
+  - Planejar a jornada para a nuvem.
+  - Identificar pontos fortes e áreas que precisam de melhoria.
+  - Criar um roadmap personalizado de migração e transformação digital.
+  - Engajar todas as áreas da empresa para uma adoção mais eficaz.
+
+#### 6 pilares (perspectivas)
+
+  - Negócios (Business)
+    - Alinha a estratégia de negócios com a adoção da nuvem, incluindo ROI, análise de custos e valor para o negócio.
+  - Pessoas (People)
+    - Gestão de mudanças culturais, treinamento e capacitação das equipes para a nuvem.
+  - Governança (Governance)
+    - Políticas, conformidade, segurança, riscos e gerenciamento financeiro na nuvem.
+  - Plataforma (Platform)
+    - Arquitetura técnica, infraestrutura, automação e implantação de aplicações na nuvem.
+  - Segurança (Security)
+    - Proteção de dados, identidade, controle de acesso e conformidade.
+  - Operações (Operations)
+    - Monitoramento, gestão de incidentes, continuidade e otimização das operações na nuvem.
+
+---
+
+### AWS Ecosystem (Ecossistema AWS)
+
+É o conjunto de serviços, ferramentas, parceiros e recursos que a Amazon Web Services oferece para apoiar empresas e desenvolvedores na criação, gerenciamento e escalabilidade de aplicações em nuvem.
+
+O ecossistema AWS é como um “universo completo” de soluções que cobre infraestrutura, segurança, dados, IA, DevOps, aplicações, redes, entre outros.
+
+#### Componentes principais do ecossistema:
+
+| Categoria | Exemplos |
+|:------:|:------:|
+| Serviços de Computação | EC2, Lambda, ECS, EKS, Fargate |
+| Machine Learning / IA | SageMaker, Rekognition, Comprehend, Lex |
+| Bancos de Dados | RDS, DynamoDB, Aurora, Redshift, ElastiCache |
+| Armazenamento | S3, EBS, EFS, FSx, Storage Gateway |
+| Segurança e Acesso | IAM, KMS, Shield, WAF, Cognito |
+| Redes | VPC, Route 53, CloudFront, Direct Connect |
+| DevOps / Ferramentas de gestão | CloudFormation, CloudWatch, CodeBuild, CodeDeploy, CodePipeline |
+| Analytics e Dados | Athena, Glue, Kinesis, QuickSight |
+| Integração de aplicações | SQS, SNS, EventBridge, Step Functions |
+| Parceiros e Marketplace | Ferramentas de terceiros, consultorias, licenças via AWS Marketplace |
+
+#### Vantagens
+
+  - Permite construir soluções completas 100% na nuvem, sem depender de infraestrutura própria
+  - Facilita a integração entre serviços com escalabilidade e segurança
+  - Dá liberdade para inovar, desde startups até grandes corporações
+  - Oferece apoio técnico e comercial com parceiros e suporte especializado
+
+---
+
+### AWS Cognito
+
+É um serviço da Amazon Web Services que permite adicionar autenticação, autorização e gerenciamento de usuários facilmente em suas aplicações web e mobile.
+
+O AWS Cognito cuida de login, cadastro, recuperação de senha, autenticação social (Google, Facebook, etc.) e autenticação multifator (MFA) — tudo com segurança e escalabilidade gerenciadas pela AWS.
+
+#### Principais componentes do Cognito
+
+| Componente | Função |
+|:------:|:------:|
+| User Pools | Sistema de gerenciamento de usuários com suporte a login/senha, MFA, etc. |
+| Identity Pools | Permite que usuários autenticados tenham acesso temporário a recursos da AWS, como S3 ou DynamoDB |
+| Federated Identity | Integração com provedores externos como Google, Facebook, Apple, SAML, OpenID |
+
+#### Vantagens
+
+  - Criar um sistema de login para seu site ou app
+  - Permitir login via redes sociais
+  - Habilitar autenticação multifator (MFA)
+  - Integrar com o Active Directory da empresa (via SAML)
+  - Conceder permissões temporárias a recursos AWS com base na identidade do usuário
+  
+---
+
+### Amazon STS (Security Token Service)
+
+É um serviço da AWS que permite criar credenciais temporárias de segurança para acessar recursos da AWS.
+
+O STS gera tokens temporários (credenciais válidas por minutos ou horas), usados por usuários, aplicações ou serviços para acessar recursos da AWS com segurança e sem precisar de credenciais fixas.
+
+#### Principais usos do STS
+
+| Situação | Como o STS ajuda |
+|:------:|:------:|
+| Acesso temporário para usuários IAM ou federados | Gera credenciais com tempo de validade definido |
+| Assumir outra role (função) | Permite trocar de função dentro da AWS para executar uma tarefa |
+| Login com provedores externos (SSO/SAML/OpenID) | Dá acesso à AWS após autenticação com Google, AD, etc. |
+| Aplicações móveis ou web acessando AWS sem credenciais fixas | STS fornece tokens seguros para essas apps |
+| Cross-account access (acesso entre contas) | Um usuário de uma conta pode assumir uma role em outra |
+
+#### Vantagens
+
+  - Mais seguro do que usar access keys fixas
+  - Credenciais com validade controlada
+  - Permissões limitadas e personalizadas
+  - Usado em conjunto com IAM, Cognito e SSO
+
+---
+
+### AWS AppSync
+
+É um serviço totalmente gerenciado da AWS que permite criar APIs GraphQL (e também REST) de forma rápida, segura e escalável, integrando diversas fontes de dados como DynamoDB, Lambda, RDS, Elasticsearch, HTTP APIs e mais.
+
+O AppSync permite criar uma única API GraphQL que conecta e orquestra vários serviços da AWS, oferecendo dados sob demanda para apps web, mobile e IoT, com recursos como real-time (WebSocket), cache, controle de acesso e sincronização offline.
+
+#### Principais recursos
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Integração com vários dados | Conecta facilmente a DynamoDB, Lambda, RDS, Elasticsearch, S3, HTTP APIs |
+| Real-time com GraphQL Subscriptions | Envia dados em tempo real para os clientes |
+| Sincronização offline (DataStore) | Suporte para apps móveis que funcionam sem conexão |
+| Controle de acesso | Suporte nativo a IAM, Cognito e API keys |
+| Caching automático | Acelera a resposta de queries com cache gerenciado |
+| Escalável e gerenciado | A AWS cuida da infraestrutura, escalabilidade e segurança |
+
+#### Vantagens
+
+  - Reduz a complexidade no frontend (menos chamadas e processamento)
+  - Backend mais desacoplado e organizado
+  - Ideal para aplicativos modernos (React, Angular, Flutter, etc.)
+  - Suporte a dados em tempo real e offline
+
+---
+
+### AWS Amplify
+
+É uma plataforma da AWS que facilita o desenvolvimento de aplicações web e mobile fullstack, oferecendo ferramentas para frontend, backend e CI/CD, com foco na velocidade, integração com serviços AWS e simplicidade para desenvolvedores.
+
+O Amplify ajuda você a criar, configurar, implantar e escalar aplicações modernas com recursos como autenticação, banco de dados, APIs, storage, hospedagem, e mais, tudo com comandos simples ou via interface visual.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Frontend hosting | Hospedagem para SPAs (React, Angular, Vue, Next.js, etc.) com CI/CD |
+| Autenticação | Login via email/senha, redes sociais, MFA — usando Cognito |
+| API (REST ou GraphQL) | Criação de APIs com Lambda + API Gateway ou AppSync + GraphQL |
+| Banco de dados | Integração com DynamoDB ou Aurora Serverless |
+| Armazenamento | Upload e acesso a arquivos no Amazon S3 |
+| Gerador de backend | Criação e configuração do backend com comandos CLI ou interface web |
+| DataStore | Sincronização offline/online automática para apps móveis |
+
+---
+
+### AWS IoT Core
+
+É um serviço da AWS que permite conectar dispositivos físicos (sensores, câmeras, eletrodomésticos, carros, etc.) à nuvem de forma segura, escalável e em tempo real.
+
+O IoT Core conecta dispositivos à nuvem para que eles possam enviar dados, receber comandos e interagir com outros serviços da AWS, como Lambda, S3, DynamoDB e Machine Learning.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Conectividade segura | Conecta milhões de dispositivos via MQTT, HTTP ou WebSockets com TLS |
+| Mensageria em tempo real | Dispositivos podem enviar e receber mensagens instantaneamente |
+| Gerenciamento de identidade e segurança | Cada dispositivo tem um certificado, política e autenticação próprios |
+| Processamento de dados | Envia dados para Lambda, S3, Kinesis, DynamoDB, etc. |
+| Regras inteligentes | Permite criar regras (como SQL) para rotear, transformar ou armazenar dados |
+
+---
+
+### AWS Step Functions
+
+É um serviço da AWS que permite orquestrar múltiplos serviços da AWS em fluxos de trabalho visuais, definidos por etapas (steps), de forma sequencial ou paralela, com controle, monitoramento e tratamento de erros.
+
+O Step Functions cria máquinas de estado (state machines) que coordenam tarefas como chamadas a Lambda, ECS, DynamoDB, SQS, API Gateway, etc., permitindo construir aplicações distribuídas, confiáveis e escaláveis sem gerenciar servidores.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Orquestração de serviços | Controla a execução de múltiplos serviços da AWS |
+| Visualização do fluxo | Interface gráfica para ver passo a passo o fluxo |
+| Etapas sequenciais e paralelas | Suporta decisões condicionais, loops, paralelismo |
+| Tratamento de erros automático | Retry, fallback e catch para lidar com falhas |
+| Logs e monitoramento nativos | Integra com CloudWatch para rastrear e debugar |
+| Alta segurança | Integração com IAM para controle de acesso |
+
+---
+
+### AWS AppFlow
+
+É um serviço da AWS que permite a transferência segura e automatizada de dados entre aplicações SaaS (Software as a Service) e os serviços da AWS, como Amazon S3, Redshift, e outros.
+
+O AWS AppFlow facilita a integração de dados entre plataformas como Salesforce, ServiceNow, Google Analytics, SAP, etc., e a AWS, sem a necessidade de escrever código, permitindo fluxos de dados bidirecionais e automáticos.
+
+#### Vantagens
+
+| Recurso | Descrição |
+|:------:|:------:|
+| Transferência de dados bidirecional | Envia dados para a AWS ou de volta para o SaaS |
+| Segurança e conformidade | Criptografa dados em trânsito e em repouso, com controle de acesso via IAM |
+| Mapeamento e transformação de dados | Suporta transformação de dados durante o fluxo (filtros, agregações) |
+| Integração com diversos SaaS | Conecta com aplicações populares como Salesforce, SAP, ServiceNow, etc. |
+| Facilidade de uso (sem código) | Interface gráfica para configurar fluxos de dados |
+| Agendamento e automação | Defina quando e com que frequência os fluxos de dados serão executados |
 
 ---
 
