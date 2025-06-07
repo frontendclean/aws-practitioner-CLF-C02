@@ -119,6 +119,15 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [AWS RAM (Resource Access Manager)](#aws-ram-resource-access-manager)
 - [AWS Trusted Advisor](#aws-trusted-advisor)
 - [AWS Service Catalog](#aws-service-catalog)
+- [Amazon Rekognition](#amazon-rekognition)
+- [Amazon Transcribe](#amazon-transcribe)
+- [Amazon Comprehend](#amazon-comprehend)
+- [Amazon Polly](#amazon-polly)
+- [Amazon Translate](#amazon-translate)
+- [Amazon Lex](#amazon-lex)
+- [Amazon Kendra](#amazon-kendra)
+- [Amazon Textract](#amazon-textract)
+- [Amazon SageMaker](#amazon-sagemaker)
 
 ---
 
@@ -2036,6 +2045,190 @@ O Trusted Advisor verifica a sua infraestrutura AWS e fornece alertas e recomend
     - Integração com CloudTrail e AWS Config
   - Compatível com múltiplas contas
     - Ideal para ambientes multi-conta com AWS Organizations
+
+---
+
+### Amazon Rekognition
+
+É um serviço de Machine Learning da AWS que permite analisar imagens e vídeos de forma automática. Ele oferece reconhecimento facial, detecção de objetos, leitura de texto em imagens (OCR), moderação de conteúdo e outras funcionalidades avançadas de visão computacional, sem que você precise treinar modelos de IA do zero.
+
+#### Vantagens
+
+  - Detecção de objetos e cenas
+    - Identifica itens como carros, pessoas, animais, prédios, etc., em imagens ou vídeos.
+  - Reconhecimento facial
+    - Detecta rostos em imagens ou vídeos.
+    - Compara rostos (por exemplo, comparar um rosto com uma base de dados).
+    - Identifica emoções (feliz, triste, surpreso, etc.).
+    - Estima idade, gênero e outros atributos faciais.
+  - Análise de texto em imagens (OCR)
+    - Extrai texto impresso de imagens (como placas, documentos, sinais etc.).
+  - Moderação de conteúdo
+    - Detecta conteúdo inapropriado, como nudez, violência ou drogas, útil para redes sociais ou uploads públicos.
+  - Análise de vídeos
+    - Permite rastrear pessoas em movimento, detectar atividades e identificar rostos ao longo do tempo em vídeos.
+
+---
+
+### Amazon Transcribe
+
+É um serviço de Machine Learning da AWS que faz transcrição automática de áudio em texto. Ou seja, ele converte gravações de voz (como reuniões, ligações, vídeos ou podcasts) em texto escrito de forma precisa e automatizada.
+
+#### Vantagens
+
+  - Transcrição de fala em tempo real (streaming)
+    - Converte fala para texto à medida que o áudio é capturado (útil para legendas ao vivo, por exemplo).
+  - Transcrição de arquivos de áudio gravados
+    - Suporta formatos como MP3, WAV, FLAC, etc.
+  - Identificação de múltiplos locutores (diarização)
+    - Informa quando há mais de uma pessoa falando (ex: "Locutor 1:", "Locutor 2:").
+  - Reconhecimento de idiomas
+    - Detecta automaticamente o idioma falado (como português, inglês, espanhol, etc.).
+  - Vocabulário personalizado
+    - Permite adicionar nomes técnicos, termos específicos ou nomes de marcas para melhorar a precisão.
+  - Detecção de palavras-chave e marcação de tempo
+    - Mostra quando cada palavra foi dita no áudio (útil para buscas em vídeo, por exemplo).
+
+---
+
+### Amazon Comprehend
+
+É um serviço de Processamento de Linguagem Natural (NLP) da AWS que usa machine learning para entender o significado de textos. Ele analisa textos e extrai informações como sentimentos, tópicos, entidades (nomes, lugares, empresas) e idioma.
+
+#### Vantagens
+
+  - Detecção de idioma
+    - Identifica automaticamente em qual idioma o texto está escrito.
+  - Análise de sentimento
+    - Determina se o texto expressa um sentimento positivo, negativo, neutro ou misto.
+  - Extração de entidades
+    - Reconhece nomes de pessoas, empresas, locais, datas, quantias em dinheiro, etc.
+  - Extração de palavras-chave (key phrases)
+    - Identifica os conceitos principais em uma frase ou parágrafo.
+  - Classificação de texto
+    - Organiza textos em categorias personalizadas (por exemplo: suporte técnico, reclamação, elogio).
+  - Reconhecimento de relações entre entidades
+    - Analisa conexões entre nomes, eventos e objetos no texto.
+  - Análise de tópicos
+    - Identifica os principais temas em grandes volumes de texto (por exemplo, comentários de clientes ou postagens em redes sociais).
+
+---
+
+### Amazon Polly
+
+É um serviço de Machine Learning da AWS que transforma texto em fala (Text-to-Speech – TTS). Ou seja, ele lê textos em voz alta com qualidade natural, usando vozes geradas por inteligência artificial.
+
+#### Vantagens
+
+  - Conversão de texto em fala (TTS)
+    - Converte texto escrito em áudio, usando vozes humanas realistas.
+    - Suporta dezenas de idiomas, incluindo português do Brasil.
+  - Vozes neurais (Neural TTS)
+    - Usa deep learning para criar vozes mais naturais, com entonação e ritmo semelhantes aos de um ser humano.
+  - Ajuste de pronúncia e entonação (SSML)
+    - Permite controlar pausas, velocidade, ênfase, volume e pronúncia usando marcações no texto.
+  - Streaming de áudio
+    - Permite começar a falar imediatamente, antes de terminar de processar todo o texto (útil para leitura ao vivo).
+  - Geração de arquivos de áudio
+    - Converte textos em arquivos MP3, OGG ou PCM, que podem ser armazenados e reproduzidos.
+
+---
+
+### Amazon Translate
+
+É um serviço de tradução automática de texto baseado em Machine Learning da AWS. Ele permite traduzir textos entre diferentes idiomas de forma rápida, precisa e escalável, sem precisar treinar um modelo próprio.
+
+#### Vantagens
+
+  - Tradução automática de idiomas
+    - Suporta mais de 75 idiomas, incluindo português, inglês, espanhol, francês, alemão, entre outros.
+    - Permite traduções em tempo real ou em grandes volumes de texto.
+  - Detecção automática de idioma
+    - Se o idioma de entrada não for especificado, o serviço pode detectá-lo automaticamente.
+  - Tradução personalizada com Custom Terminology
+    - Permite definir vocabulário específico para garantir que termos técnicos ou nomes de marcas sejam traduzidos corretamente.
+  - Integração com outros serviços AWS
+    - Pode ser combinado com Amazon Comprehend, Amazon Polly, ou Amazon S3, por exemplo.
+
+---
+
+### Amazon Lex
+
+É um serviço de Machine Learning da AWS que permite criar chatbots e assistentes virtuais inteligentes que entendem linguagem natural falada ou escrita. Ele usa a mesma tecnologia do Amazon Alexa para interpretar e responder interações humanas.
+
+#### Vantagens
+
+  - Processamento de linguagem natural (NLP)
+    - Entende intenções do usuário e extrai informações importantes da fala ou texto (por exemplo: horários, datas, nomes).
+  - Entrada de voz e texto
+    - Pode interagir por texto (chat) ou voz (áudio).
+  - Integração com outros serviços
+    - Fácil de integrar com Amazon Connect (central de atendimento), Lambda, DynamoDB, etc.
+  - Gerenciamento de sessões e contexto
+    - Lembra de informações durante uma conversa e conduz diálogos mais naturais.
+  - Criação de bots com interface visual
+    - Você pode criar e configurar bots diretamente na console da AWS, definindo intenções (intents) e frases de exemplo.
+
+---
+
+### Amazon Kendra
+
+É um serviço de busca inteligente (enterprise search) baseado em Machine Learning da AWS. Ele permite que as empresas criem sistemas de pesquisa com linguagem natural dentro dos seus próprios documentos e sistemas internos — como se fosse um "Google corporativo".
+
+#### Vantagens
+
+  - Busca por linguagem natural
+    - E o Kendra entende a intenção e retorna respostas precisas, mesmo que a pergunta não esteja escrita literalmente nos documentos.
+  - Conectores para múltiplas fontes
+    - Conecta-se a SharePoint, S3, Salesforce, Dropbox, bancos de dados, sites internos, entre outros, para buscar dados.
+  - Resposta direta (Answer Extraction)
+    - Em vez de mostrar apenas links ou documentos, o Kendra pode mostrar um trecho direto da resposta.
+  - Relevância inteligente
+    - Usa ML para ranquear os melhores resultados, com base no contexto, uso anterior e feedback do usuário.
+  - Controle de acesso
+    - Garante que os usuários só vejam resultados para os quais têm permissão.
+
+---
+
+### Amazon Textract
+
+É um serviço de Machine Learning da AWS que extrai automaticamente texto, tabelas e dados de formulários em documentos digitalizados — como PDFs, imagens escaneadas ou fotos de papéis.
+
+Diferente de um OCR tradicional (que apenas lê o texto), o Textract compreende a estrutura do documento, identificando campos, rótulos, colunas e relações entre dados.
+
+#### Vantagens
+
+  - Extração de texto impresso e manuscrito
+    - Lê texto de documentos escaneados (como contratos, recibos, faturas, formulários, etc.).
+  - Reconhecimento de formulários
+    - Identifica pares de chave-valor.
+  - Detecção de tabelas
+    - Reconhece linhas, colunas e células em tabelas de documentos, mesmo com layouts complexos.
+  - Processamento de documentos em lote
+    - Permite extrair dados de milhares de documentos de forma automatizada.
+  - Integração com outros serviços
+    - Pode ser combinado com Amazon Comprehend (para entender o conteúdo), AWS Lambda, S3 e Textract Analyze Lending (voltado para documentos financeiros).
+
+---
+
+### Amazon SageMaker 
+
+É um serviço da AWS que permite criar, treinar e implantar modelos de machine learning de forma rápida, segura e escalável. Ele é voltado tanto para iniciantes quanto para cientistas de dados experientes, e elimina muito do trabalho manual envolvido no desenvolvimento de modelos de ML.
+
+#### Vantagens
+
+  - Ambiente completo de desenvolvimento
+    - Fornece notebooks Jupyter prontos para escrever código, explorar dados e treinar modelos — sem precisar configurar infraestrutura.
+  - Treinamento de modelos em grande escala
+    - Treina modelos com rapidez usando instâncias otimizadas, com suporte a paralelismo e GPU.
+  - Implantação automática de modelos
+    - Permite publicar modelos em produção com um clique, criando endpoints com escalabilidade automática.
+  - AutoML com SageMaker Autopilot
+    - Gera automaticamente os melhores modelos para seus dados, mesmo sem saber programar ou entender algoritmos.
+  - Rotulagem de dados (Ground Truth)
+    - Ajuda a anotar dados de treinamento (como imagens, texto, etc.) com rotulagem automatizada e humana.
+  - Monitoramento e ajuste contínuo
+    - Acompanha a performance do modelo em produção e sugere re-treinamento se ele começar a ter baixa precisão.
 
 ---
 
