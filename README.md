@@ -35,9 +35,12 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Tutorial Dojo (ExamTopics)](https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner/view/)
   > Questões comentadas por outros candidatos. Use com senso crítico.
 
+- [Acertaí (Criada por @frontendclean) GRATUITO](https://frontendclean.github.io/acertai_ui/)
+  > Plataforma com diversas questões e simulados para praticar.
+
 ---
 
-## O que estudar (resumo dos tópicos)
+## O que estudar (+130 tópicos)
 
 ### Menu 
 
