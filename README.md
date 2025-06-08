@@ -166,6 +166,17 @@ A certificação **Cloud Practitioner** é a porta de entrada para o mundo AWS. 
 - [Amazon QuickSight](#amazon-quicksight)
 - [AWS Support](#aws-support)
 - [AWS Professional Services](#aws-professional-services)
+- [AWS Launch Wizard](#aws-launch-wizard)
+- [Amazon Personalize](#amazon-personalize)
+- [AWS DataSync](#aws-datasync)
+- [AWS Audit Manager](#aws-audit-manager)
+- [AWS CloudTrail](#aws-cloudtrail)
+- [AWS License Manager](#aws-license-manager)
+- [AWS Certificate Manager (ACM)](#aws-certificate-manager-acm)
+- [Amazon Forecast](#amazon-forecast)
+- [AWS Application Discovery Service](#aws-application-discovery-service)
+- [AWS Application Migration Service (MGN)](#aws-application-migration-service-mgn)
+- [AWS Key Management Service (KMS)](#aws-key-management-service-kms)
 
 ---
 
@@ -2016,7 +2027,7 @@ Com o Lambda, você sobe seu código, define quando ele deve rodar, e a AWS cuid
 
 É um serviço da AWS que facilita a criação, organização e governança de múltiplas contas AWS dentro de um ambiente corporativo — ou seja, ele ajuda você a criar e manter um ambiente multi-conta seguro, padronizado e escalável.
 
-O Control Tower é como um “gerente de nuvem corporativa”, que configura boas práticas automaticamente, como segurança, compliance e contas separadas, desde o início.
+O Control Tower é como um "gerente de nuvem corporativa", que configura boas práticas automaticamente, como segurança, compliance e contas separadas, desde o início.
 
 #### O que o Control Tower faz
 
@@ -2344,7 +2355,7 @@ Ele oferece um conjunto de melhores práticas, diretrizes e ferramentas para que
 
 É o conjunto de serviços, ferramentas, parceiros e recursos que a Amazon Web Services oferece para apoiar empresas e desenvolvedores na criação, gerenciamento e escalabilidade de aplicações em nuvem.
 
-O ecossistema AWS é como um “universo completo” de soluções que cobre infraestrutura, segurança, dados, IA, DevOps, aplicações, redes, entre outros.
+O ecossistema AWS é como um "universo completo" de soluções que cobre infraestrutura, segurança, dados, IA, DevOps, aplicações, redes, entre outros.
 
 #### Componentes principais do ecossistema:
 
@@ -3236,7 +3247,7 @@ O Compute Optimizer ajuda você a dimensionar corretamente seus recursos, evitan
 
 É um serviço da AWS que permite procurar e visualizar recursos da nuvem (como EC2, S3, Lambda, RDS, etc.) de forma rápida e centralizada, mesmo em múltiplas regiões.
 
-O AWS Resource Explorer é como um “buscador de recursos” da AWS — você digita o nome ou tipo de recurso e ele encontra onde está, sem precisar procurar manualmente.
+O AWS Resource Explorer é como um "buscador de recursos" da AWS — você digita o nome ou tipo de recurso e ele encontra onde está, sem precisar procurar manualmente.
 
 #### Principais funcionalidades
 
@@ -3244,7 +3255,7 @@ O AWS Resource Explorer é como um “buscador de recursos” da AWS — você d
 |:------:|:------:|
 | Busca rápida | Localiza recursos por nome, tipo, tag ou ID. |
 | Busca multi-região | Permite buscar recursos em todas as regiões da conta. |
-| Interface simples | A busca funciona como uma “barra de pesquisa” do console. |
+| Interface simples | A busca funciona como uma "barra de pesquisa" do console. |
 | Filtros por tipo/tags | Você pode refinar os resultados por tipo ou metadados. |
 
 #### Vantagens
@@ -3335,7 +3346,221 @@ O QuickSight ajuda você a transformar dados brutos em gráficos e dashboards in
 
 ---
 
+### AWS Launch Wizard 
 
+É um serviço da AWS que guia você passo a passo para implantar aplicações complexas (como SAP, SQL Server, Active Directory, etc.) na nuvem, de forma automatizada e com boas práticas.
+
+O AWS Launch Wizard é como um "assistente de instalação" que ajuda você a criar toda a infraestrutura necessária para uma aplicação com poucos cliques.
+
+#### O que ele faz
+
+| Função | Explicação |
+|:------:|:------:|
+| Implantação guiada (wizard) | Interface simples que guia a criação do ambiente. |
+| Infraestrutura automática | Cria VPC, instâncias EC2, volumes EBS, bancos de dados, etc. |
+| Ajustes de performance/custo | Você escolhe entre diferentes tamanhos e configurações. |
+| Boas práticas da AWS | Arquiteturas recomendadas e seguras são seguidas automaticamente. |
+| Suporte a aplicações específicas | SAP, SQL Server, AD, Exchange, entre outras. |
+
+#### Vantagens
+
+  - Reduz erros de configuração.
+  - Economiza tempo em projetos complexos.
+  - Garante conformidade com arquiteturas testadas.
+  - Não cobra pelo uso — você paga apenas pelos recursos criados.
+
+---
+
+### Amazon Personalize 
+
+É um serviço da AWS que permite criar sistemas de recomendação personalizados com inteligência artificial (IA), do mesmo tipo que a Amazon.com usa para sugerir produtos.
+
+O Amazon Personalize permite que você adicione recomendações inteligentes em tempo real no seu app, site ou e-commerce — sem precisar ser especialista em machine learning.
+
+#### O que ele faz
+
+| Função | Exemplo prático |
+|:------:|:------:|
+| Recomendações de produtos | "Produtos que você pode gostar" |
+| Listas personalizadas | "Filmes recomendados para você" |
+| Previsão de comportamento | "Usuários que provavelmente cancelarão" |
+| Ranking personalizado | Ordenar itens com base no perfil do usuário |
+
+#### Vantagens
+
+  - Pronto para uso: não precisa saber programar IA.
+  - Em tempo real: recomendações atualizadas conforme o comportamento do usuário.
+  - Altamente personalizável.
+  - Escalável e seguro.
+
+---
+
+### AWS DataSync 
+
+É um serviço gerenciado que permite mover dados rapidamente e com segurança entre armazenamento local (on-premises) e serviços da AWS, como Amazon S3, EFS, FSx e até entre regiões da AWS.
+
+O DataSync automatiza e acelera a transferência de grandes volumes de dados, com recursos de verificação, compressão e criptografia.
+
+#### Vantagens
+
+  - Até 10× mais rápido que ferramentas de cópia tradicionais (como rsync).
+  - Verificação automática de integridade dos dados.
+  - Criptografia em trânsito.
+  - Integração com CloudWatch e EventBridge.
+  - Suporta cron jobs para sincronizações periódicas.
+
+---
+
+### AWS Audit Manager 
+
+É um serviço da AWS que ajuda você a automatizar a coleta de evidências para auditorias de conformidade e segurança.
+
+O Audit Manager facilita o trabalho de auditorias e certificações, como ISO 27001, PCI-DSS, GDPR, SOC 2, etc., coletando automaticamente as evidências exigidas diretamente dos serviços da AWS.
+
+#### O que ele faz
+
+| Função | Explicação |
+|:------:|:------:|
+| Automatiza coleta de evidências | Captura logs, configurações e atividades dos serviços da AWS. |
+| Modelos de conformidade prontos | Já vem com frameworks como ISO, PCI, HIPAA, entre outros. |
+| Geração de relatórios | Cria relatórios organizados para auditores e equipes de compliance. |
+| Mapeamento de controles | Relaciona serviços e configurações com controles específicos da auditoria. |
+
+#### Vantagens
+
+  - Reduz esforço manual em auditorias.
+  - Evita esquecimentos ou falhas humanas na coleta de evidências.
+  - Melhora a segurança e conformidade contínua.
+  - Facilita a preparação para certificações e revisões regulatórias.
+
+---
+
+### AWS CloudTrail 
+
+É o serviço que registra todas as ações realizadas na sua conta AWS — quem fez, o que fez, quando, de onde e em qual recurso.
+
+#### O que ele faz
+
+  - Auditoria e rastreabilidade
+    - grava eventos de API (console, CLI, SDK, serviços).
+  - Detecção de incidentes
+    - integra-se com CloudWatch Logs/Events, Security Hub, GuardDuty.
+  - Compliance
+    - fornece trilha de auditoria para normas como ISO 27001, PCI-DSS, LGPD/GDPR.
+  - Investigação forense
+    - permite saber “quem deletou aquela instância S3 ontem às 14h?”.
+
+#### Vantagens
+
+  - Visibilidade completa
+    - Saber o histórico de chamadas de API.
+  - Segurança
+    - Investigar acessos suspeitos ou não autorizados.
+  - Automação
+    - Disparar ações (ex.: bloquear IP) usando EventBridge/CloudWatch Events.
+  - Custo baixo
+    - Paga-se só por Data Events/Insights; Management events são gratuitos para gravação em S3.
+
+---
+
+### AWS License Manager 
+
+É um serviço que ajuda você a controlar, rastrear e aplicar o uso de licenças de software (Microsoft, Oracle, SAP, SUSE, etc.) dentro dos ambientes AWS (e on-premises, se integrado).
+
+#### Para que serve
+
+| Problema | Como o License Manager ajuda |
+|:------:|:------:|
+| Excesso ou falta de licenças | Define limites de CPUs, sockets, vCPUs ou instâncias e gera alertas/impede lançamentos que excedam. |
+| Inventário disperso | Descobre automaticamente instâncias EC2, hosts dedicados, VMware-vCenter (via agente) e mapeia quais licenças estão em uso. |
+| Auditoria e compliance | Relatórios unificados sobre quem está usando qual licença, por quanto tempo e em que região/conta. |
+| Otimização de custos | Permite estratégia Bring-Your-Own-License (BYOL) com controle central e evita pagar por licenças desnecessárias. |
+
+#### Vantagens
+
+  - Governança centralizada de licenças BYOL e Marketplace.
+  - Reduz risco de multas por não-conformidade.
+  - Visibilidade multi-conta e multi-região.
+  - Sem custo adicional: você paga apenas pelos recursos subjacentes (EC2, etc.).
+
+---
+
+### AWS Certificate Manager (ACM) 
+
+É o serviço da AWS que emite, gerencia e renova automaticamente certificados SSL/TLS para proteger domínios, APIs e aplicações na nuvem — sem precisar lidar com processos manuais de criação de CSR, validação e instalação.
+
+#### Por que usar 
+
+  - Emissão grátis de certificados públicos para domínios que você possui.
+  - Renovação automática (evita expiração acidental).
+  - Integração nativa com Elastic Load Balancer, CloudFront, API Gateway, App Runner, etc.
+  - Suporte a certificados privados via ACM Private CA (autoridade certificadora privada gerenciada).
+  - Importação de certificados de terceiros, se já possuir.
+
+---
+
+### Amazon Forecast 
+
+É um serviço da AWS que usa machine learning para gerar previsões (forecasting) de séries temporais — vendas, demanda, tráfego, estoque, temperatura, etc. Ele aproveita a mesma tecnologia que a Amazon utiliza internamente para prever demanda em seu e-commerce, mas empacotado como serviço gerenciado.
+
+#### Vantagens
+
+| Vantagem | Por quê importa |
+|:------:|:------:|
+| Sem expertise em ML | Todo o tuning de modelos é automático. |
+| Alta precisão | Combina vários algoritmos e escolhe o melhor por série. |
+| Explicabilidade | Relatórios de importância de variáveis e métricas de erro. |
+| Escalável | Processa de poucas a milhares de séries em paralelo. |
+| Integração fácil | S3 para dados, SDK/CLI para chamadas, exporta para Redshift, QuickSight, etc. |
+
+---
+
+### AWS Application Discovery Service 
+
+É um serviço que ajuda empresas a planejar migrações para a nuvem, identificando automaticamente quais aplicações e servidores estão rodando no seu ambiente local (on-premises).
+
+O AWS Application Discovery Service coleta informações sobre ambientes locais (on-premises) para ajudar no planejamento e execução de migrações para a nuvem, identificando servidores, aplicações e suas dependências.
+
+#### O que ele faz
+
+Ele coleta dados detalhados sobre sua infraestrutura local, como:
+
+  - Quais aplicações estão rodando.
+  - Quais servidores físicos ou virtuais estão sendo usados.
+  - Uso de CPU, memória, rede e armazenamento.
+  - Dependências entre aplicações (por exemplo, um servidor web que se conecta a um banco de dados).
+
+Essas informações ajudam a planejar a migração para a AWS de forma mais eficiente e segura.
+
+---
+
+### AWS Application Migration Service (MGN) 
+
+É um serviço da AWS que permite migrar servidores físicos, virtuais ou em outras nuvens para a AWS de forma automática, rápida e com interrupção mínima.
+
+#### O que ele faz
+
+Ele copia e converte automaticamente seus servidores on-premises, VMware, Hyper-V ou de outras nuvens para máquinas virtuais na AWS (instâncias EC2), mantendo:
+
+  - Sistema operacional
+  - Aplicações
+  - Dados
+  - Configurações
+
+Tudo isso com replicação contínua, o que permite realizar testes e cortar para o ambiente na AWS com o mínimo de downtime.
+
+---
+
+### AWS Key Management Service (KMS) 
+
+É um serviço gerenciado da AWS que permite criar, armazenar e controlar chaves de criptografia usadas para proteger seus dados.
+
+#### O que ele faz
+
+  - Cria e gerencia chaves criptográficas (CMKs) usadas para criptografar dados em repouso e em trânsito.
+  - Integra-se com outros serviços da AWS, como S3, EBS, RDS, Lambda, etc., permitindo criptografia automática de dados.
+  - Permite controle de acesso detalhado às chaves com o IAM.
+  - Suporta auditoria via AWS CloudTrail, registrando quem usou as chaves e quando.
 
 ---
 
